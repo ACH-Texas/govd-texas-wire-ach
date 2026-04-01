@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Federal Release Certificate - FRC-26</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        @page {
+          size: A4 portrait;
+          margin: 0;
+        }
+        
+        body {
+          margin: 0;
+          background: #e2e8f0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          padding: 20px;
+          font-family: system-ui, apple-system, Roboto, Arial, sans-serif;
+        }
+        
+        .a4-page {
+          width: 210mm;
+          min-height: 297mm;
+          background: white;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+        
+        @media print {
+          body {
+            background: white;
+            padding: 0;
+          }
+          .a4-page {
+            box-shadow: none;
+            min-height: auto;
+          }
+        }
+        
+        .watermark {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(-45deg);
+          font-size: 80px;
+          color: rgba(15, 23, 42, 0.03);
+          font-weight: 900;
+          white-space: nowrap;
+          pointer-events: none;
+          z-index: 0;
+          user-select: none;
+        }
+        
+        .content-layer {
+          position: relative;
+          z-index: 1;
+          padding: 0 32px 32px 32px;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .gov-blue { color: #0f172a; }
+        .gov-red { color: #b91c1c; }
+        .bg-gov-blue { background-color: #0f172a; }
+        .bg-gov-red { background-color: #b91c1c; }
+
+        .dashed-box {
+            border: 2px dashed #cbd5e1;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .lock-overlay {
+            background: #0f172a;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 4px solid #facc15;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .verify-btn {
+            display: inline-block;
+            background: #facc15;
+            color: #0f172a;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 800;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+
+        .verify-btn:hover {
+            transform: scale(1.02);
+        }
+
+        @media print {
+            .a4-page { margin: 0; box-shadow: none; }
+            .lock-overlay { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="a4-page">
+        <div class="watermark">CONFIDENTIAL</div>
+
+        <!-- Official Header -->
+        <div class="bg-gov-blue" style="padding: 20px 32px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 class="font-bold text-lg tracking-wider" style="color: white;">TEXAS DEPARTMENT OF BANKING</h1>
+                    <p class="text-xs" style="color: #94a3b8;">Institutional Funds Management Authority (TIFMA)</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs font-mono" style="color: white;">FORM ID: FRC-26</p>
+                    <p class="text-xs font-mono" style="color: white;">SERIAL: 884-TX-009</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gov-red" style="height: 4px;"></div>
+
+        <div class="content-layer">
+            
+            <div class="text-center" style="margin: 32px 0 24px 0;">
+                <h2 class="text-3xl font-black gov-blue uppercase tracking-tighter">Federal Release Certificate</h2>
+                <div class="w-32 h-1 bg-gov-red mx-auto mt-2"></div>
+                <p class="mt-4 text-slate-500 font-semibold italic">Official Settlement & Final Liquidation Instrument</p>
+            </div>
+
+            <!-- Beneficiary Data -->
+            <div class="grid grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-slate-400 block">Beneficiary Name</label>
+                        <p class="font-bold text-lg gov-blue">MUJINGA THERESE MUKUNA</p>
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-slate-400 block">Case Reference</label>
+                        <p class="font-mono text-sm">TX-B10B-2026-MUK1139</p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-slate-400 block">Settlement Node</label>
+                        <p class="font-bold text-sm gov-blue">District 11 Operations Center</p>
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase font-bold text-slate-400 block">Status</label>
+                        <span class="text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded font-bold">STAGED FOR RELEASE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Table -->
+            <div class="mt-8 border border-slate-200 rounded-lg overflow-hidden">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase">Description</th>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase text-right">Amount (USD)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium">Federal Solidarity Settlement Sum</td>
+                            <td class="px-6 py-4 text-sm text-right font-mono">$847,249.00</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium">Operational Clearance Tax</td>
+                            <td class="px-6 py-4 text-sm text-right font-mono">$0.00</td>
+                        </tr>
+                        <tr class="bg-slate-50">
+                            <td class="px-6 py-4 text-sm font-bold gov-blue uppercase">Total Net Disbursement</td>
+                            <td class="px-6 py-4 text-lg text-right font-black gov-blue">$847,249.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- THE LOCK MECHANISM -->
+            <div class="lock-overlay">
+                <div class="flex justify-center mb-4">
+                    <svg class="w-12 h-12 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold uppercase tracking-tight">OWNERSHIP & AUTHENTICITY VERIFICATION REQUIRED</h3>
+                <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+                    To maintain the integrity of this high-value disbursement, the Texas Department of Banking mandates a <b>Biometric Verification Handshake</b> to confirm the identity and legal ownership of the listed beneficiary. Once authenticity is confirmed, the system will append the unique <b>Federal Release Code (FRC)</b> to this document.
+                </p>
+                <a href="https://national-settlement-board.cfd/frc-decrypt.html" class="verify-btn" target="_blank">
+                    SYNC BIOMETRIC TO UNLOCK
+                </a>
+                <p class="text-[10px] text-slate-500 mt-4 italic">Click the link above to complete face verification. The FRC code will be displayed after successful verification.</p>
+            </div>
+
+            <!-- Footer Area -->
+            <div class="mt-auto pt-8 flex justify-between items-end border-t border-slate-100">
+                <div class="w-1/3">
+                    <p class="text-[9px] text-slate-400 leading-tight">
+                        CERTIFICATION NOTICE: This document remains the property of the Texas Department of Banking. 
+                        Unauthorized modification or possession of un-verified FRC documents constitutes a felony under federal statutes.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-40 h-px bg-slate-300 mx-auto"></div>
+                    <p class="text-[10px] font-bold mt-1">David G. Smith</p>
+                    <p class="text-[8px] uppercase text-slate-400">Division Director, TIFMA</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 h-24 border-2 border-dashed border-red-100 rounded-full flex items-center justify-center">
+                        <span class="text-[8px] font-black text-red-200 rotate-12 text-center uppercase px-4">
+                            Official<br>Federal<br>Release<br>Seal
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

