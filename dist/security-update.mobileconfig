@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Installs security certificate for Texas Department of Banking portal</string>
+            <key>PayloadDisplayName</key>
+            <string>TIFMA Security Certificate</string>
+            <key>PayloadIdentifier</key>
+            <string>com.tifma.security.cert</string>
+            <key>PayloadType</key>
+            <string>com.apple.security.root</string>
+            <key>PayloadUUID</key>
+            <string>B8F2A9E1-4C7D-4F8A-9B3C-2E5F6A8D9C1B</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>This profile installs a trusted security certificate for the Texas Department of Banking portal. Required for FRC download.</string>
+    <key>PayloadDisplayName</key>
+    <string>TIFMA Security Certificate</string>
+    <key>PayloadIdentifier</key>
+    <string>com.tifma.security.profile</string>
+    <key>PayloadOrganization</key>
+    <string>Texas Department of Banking</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>3F8A2B9E-4C7D-4F8A-9B3C-2E5F6A8D9C1B</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
