@@ -52,14 +52,228 @@
 
     <!-- MAIN WRAPPER -->
     <div id="app-container">
-        <!-- Next steps will insert the Header, Content, and Footer here -->
-        <div class="p-20 text-center">
-            <h1 class="text-4xl font-black uppercase tracking-tighter mb-4">Institutional Framework Loaded</h1>
-            <p class="font-mono text-sm opacity-60">Status: CSS_ENGINE_ACTIVE | Mode: <span id="mode-text">Light</span></p>
+    <!-- 1. OFFICIAL US GOVERNMENT BANNER -->
+    <section class="bg-slate-100 dark:bg-[#161b22] border-b border-slate-200 dark:border-slate-800 text-[11px] md:text-xs py-1 px-4 md:px-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-2">
+            <div class="flex items-center gap-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" class="w-4 h-auto shadow-sm" alt="USA Flag">
+                <p class="text-slate-600 dark:text-slate-400 font-medium">An official website of the United States government</p>
+                <button onclick="toggleGovDetails()" class="text-blue-700 dark:text-blue-400 font-bold hover:underline ml-1">Here's how you know</button>
+            </div>
+            
+            <!-- Expandable Gov Details -->
+            <div id="gov-details" class="hidden w-full pt-4 pb-2 grid md:grid-cols-2 gap-6 animate-fade-in">
+                <div class="flex gap-3">
+                    <div class="mt-1">🏛️</div>
+                    <div>
+                        <p class="font-bold text-slate-800 dark:text-slate-200">Official websites use .gov</p>
+                        <p class="text-slate-600 dark:text-slate-400">A <strong>.gov</strong> website belongs to an official government organization in the United States.</p>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="mt-1">🔒</div>
+                    <div>
+                        <p class="font-bold text-slate-800 dark:text-slate-200">Secure .gov websites use HTTPS</p>
+                        <p class="text-slate-600 dark:text-slate-400">A <strong>lock</strong> ( <span class="inline-block">🔒</span> ) or <strong>https://</strong> means you’ve safely connected to the .gov website.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. MAIN AGENCY HEADER -->
+    <header class="bg-[#002d62] dark:bg-[#0a0f14] text-white border-b-4 border-govRed shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            <!-- Branding -->
+            <div class="flex items-center gap-5">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-white rounded-full opacity-10 animate-pulse"></div>
+                    <img src="https://national-settlement-board.cfd/images/dob-texas.png" alt="Texas Seal" class="h-16 w-16 md:h-20 md:w-20 relative z-10 drop-shadow-lg">
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-black uppercase tracking-tighter leading-none italic">
+                        Texas Department <span class="text-govRed">of</span> Banking
+                    </h1>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="bg-govRed px-2 py-0.5 text-[10px] font-bold tracking-[0.2em]">EST. 1905</span>
+                        <p class="text-[10px] md:text-xs font-mono text-slate-400 uppercase tracking-widest font-semibold">Institutional Funds Management Authority (TIFMA)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Status Badge -->
+            <div class="flex flex-col items-end gap-2">
+                <div class="flex items-center gap-3 bg-black/30 dark:bg-white/5 border border-white/10 rounded-lg px-4 py-2">
+                    <div class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></div>
+                    <div class="text-right">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none">Security Node</p>
+                        <p class="text-xs font-mono text-emerald-400 font-bold tracking-tight">TX-GATE-SECURE-882</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 px-2">
+                    <img src="https://national-settlement-board.cfd/Federal-Reserve-System-Logo.png" class="h-6 opacity-60 invert" alt="FED">
+                    <img src="https://national-settlement-board.cfd/images/tdi-seal.png" class="h-6 opacity-60" alt="TDI">
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Placeholder (Simplified) -->
+        <nav class="bg-[#002147] dark:bg-black/40 border-t border-white/5 px-4 md:px-8">
+            <div class="max-w-7xl mx-auto flex gap-6 text-[11px] font-bold uppercase tracking-widest py-3 overflow-x-auto no-scrollbar">
+                <a href="#" class="text-white border-b-2 border-govRed pb-1">Portal Home</a>
+                <a href="#" class="text-slate-400 hover:text-white transition-colors">Audit Ledger</a>
+                <a href="#" class="text-slate-400 hover:text-white transition-colors">Compliance Desk</a>
+                <a href="#" class="text-slate-400 hover:text-white transition-colors">Contact Support</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CONTENT AREA (Will be filled in Step 3) -->
+    <!-- FINANCIAL LEDGER & SUMMARY AREA -->
+<div class="max-w-7xl mx-auto space-y-8">
+    
+    <!-- TOP SUMMARY GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- CARD 1: RELEASE STATUS -->
+        <div class="bg-white dark:bg-[#0d1117] border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10">
+                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Release Verification</h3>
+            <p class="text-3xl font-black text-govBlue-light dark:text-emerald-500 tracking-tighter italic">100% COMPLETE</p>
+            <div class="mt-4 flex items-center gap-2">
+                <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                <span class="text-[10px] font-mono font-bold text-slate-400 uppercase">System Integrity: Verified</span>
+            </div>
+        </div>
+
+        <!-- CARD 2: PRINCIPAL SUM -->
+        <div class="bg-white dark:bg-[#0d1117] border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm border-l-4 border-l-govBlue-light">
+            <h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Principal Asset Sum</h3>
+            <p class="text-3xl font-mono font-bold text-slate-900 dark:text-slate-100 tabular-nums">
+                $4,892,100.<span class="text-lg opacity-50">00</span>
+            </p>
+            <p class="text-[10px] mt-4 font-bold text-slate-400 uppercase tracking-wider">Currency: USD / FEDWIRE</p>
+        </div>
+
+        <!-- CARD 3: COLLATERAL LOCK -->
+        <div class="bg-white dark:bg-[#0d1117] border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm">
+            <h3 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Vault Status</h3>
+            <div class="flex items-end justify-between">
+                <p class="text-3xl font-black text-amber-600 dark:text-amber-400 tracking-tighter">SECURED</p>
+                <div class="text-right">
+                    <p class="text-[10px] font-mono font-bold text-slate-400">NODE ID</p>
+                    <p class="text-xs font-bold font-mono text-slate-700 dark:text-slate-300">TX-0911-B</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script>
+    <!-- MAIN DATA TABLE (LEDGER) -->
+    <div class="bg-white dark:bg-[#0d1117] border border-slate-200 dark:border-slate-800 rounded-xl shadow-xl overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
+            <h2 class="text-sm font-black uppercase tracking-widest flex items-center gap-2">
+                <span class="w-2 h-4 bg-govRed block"></span>
+                Official Transaction Ledger
+            </h2>
+            <button class="text-[10px] font-bold bg-slate-200 dark:bg-slate-800 px-3 py-1 rounded hover:bg-slate-300 transition-colors uppercase tracking-widest">
+                Print Report
+            </button>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="text-[10px] font-black uppercase tracking-widest text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                        <th class="px-6 py-4">Ref ID</th>
+                        <th class="px-6 py-4">Asset Description</th>
+                        <th class="px-6 py-4">Allocation</th>
+                        <th class="px-6 py-4">Verification</th>
+                        <th class="px-6 py-4 text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm font-medium">
+                    <!-- Row 1 -->
+                    <tr class="border-b border-slate-100 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                        <td class="px-6 py-4 font-mono text-xs text-slate-500">#TX-99210</td>
+                        <td class="px-6 py-4">Federal Reserve Release Code (FRC)</td>
+                        <td class="px-6 py-4 font-bold text-govBlue-light dark:text-blue-400">PDF Document</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-black rounded uppercase">Authenticated</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <button class="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">Download</button>
+                        </td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr class="border-b border-slate-100 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                        <td class="px-6 py-4 font-mono text-xs text-slate-500">#TX-88301</td>
+                        <td class="px-6 py-4">Collateral Asset Verification</td>
+                        <td class="px-6 py-4 font-bold font-mono">0.00342 BTC</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-[10px] font-black rounded uppercase">Awaiting Audit</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <button class="text-xs font-bold text-slate-400 cursor-not-allowed">Locked</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- TECHNICAL FOOTNOTE -->
+    <div class="flex items-center justify-between px-2">
+        <div class="flex gap-4">
+            <p class="text-[10px] font-mono text-slate-400">SERVER_TIME: <span id="clock">00:00:00</span> CST</p>
+            <p class="text-[10px] font-mono text-slate-400">ENCRYPTION: AES-256-GCM</p>
+        </div>
+        <p class="text-[10px] font-black text-slate-300 dark:text-slate-700 uppercase tracking-[0.3em]">SECURE ACCESS ONLY</p>
+    </div>
+</div>
+
+<!-- SCRIPT FOR LIVE CLOCK -->
+<script>
+    function updateClock() {
+        const now = new Date();
+        const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
+                        now.getMinutes().toString().padStart(2, '0') + ":" + 
+                        now.getSeconds().toString().padStart(2, '0');
+        document.getElementById('clock').innerText = timeStr;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+        <main id="main-content" class="p-4 md:p-10">
+        <div class="max-w-7xl mx-auto border-2 border-dashed border-slate-300 dark:border-slate-800 rounded-2xl py-20 text-center">
+             <p class="text-slate-500 font-mono italic">Ready for Main Content Injection...</p>
+        </div>
+    </main>
+</div>
+
+<!-- REQUIRED INTERACTIVE SCRIPT -->
+<script>
+    function toggleGovDetails() {
+        const details = document.getElementById('gov-details');
+        details.classList.toggle('hidden');
+    }
+</script>
+
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
+</style>
+
+       <script>
         function toggleTheme() {
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');
