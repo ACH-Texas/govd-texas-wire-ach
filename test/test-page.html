@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 
-    <meta name="theme-color" content="#005ea2">
-    <meta name="description" content="Secure institutional financial system">
+<meta name="theme-color" content="#005ea2">
+<meta name="description" content="Secure institutional financial system">
 
-    <title>Institutional Funds Management Portal | Texas Department of Banking</title>
+<title>Institutional Funds Management Portal | Texas Department of Banking</title>
 
-    <!-- GOV FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <script src="security.js"></script>
 
@@ -29,26 +30,33 @@
 <header class="site-header">
     <div class="header-top">
         <div class="container header-brand">
-            <img src="https://national-settlement-board.cfd/images/dob-texas.png" alt="">
+            <img src="https://national-settlement-board.cfd/images/dob-texas.png" alt="Texas Department of Banking Seal">
             <div class="brand-text">
                 <h1>Texas Department of Banking</h1>
                 <p>Institutional Funds Management Authority (TIFMA)</p>
             </div>
-            <div style="margin-left:auto;">
+
+            <!-- REAL GOV POSITION: RIGHT SIDE -->
+            <div class="header-controls">
+                <button class="theme-toggle" onclick="toggleInterfaceTheme()" aria-label="Toggle theme">
+                    🌙
+                </button>
                 <div id="cst-clock" class="cst-clock-badge">00:00:00 CST</div>
             </div>
         </div>
     </div>
 </header>
 
-<main class="container main-content">
+<main id="main" class="container main-content">
 
 <div class="panel elevated">
+
     <div class="panel-header">
         <div>
             <h2>Node Integration Environment</h2>
             <p id="system-date" class="muted"></p>
         </div>
+
         <div class="status-indicator">
             <span class="status-dot pulse"></span>
             SYSTEM_LINK_ACTIVE
@@ -56,6 +64,7 @@
     </div>
 
     <div class="grid">
+
         <div class="identity">
             <h3>Session Identity</h3>
             <p id="user-name" class="identity-name">Loading...</p>
@@ -68,12 +77,14 @@
                 Switch Interface Theme
             </button>
         </div>
+
     </div>
 </div>
 
 </main>
 
 <footer class="site-footer">
+
     <div class="container footer-grid">
         <div>
             <h4>Institutional Oversight</h4>
@@ -82,14 +93,16 @@
                 All activity is monitored under applicable law.
             </p>
         </div>
+
         <div class="footer-logo">
-            <img src="https://national-settlement-board.cfd/Federal-Reserve-System-Logo.png">
+            <img src="https://national-settlement-board.cfd/Federal-Reserve-System-Logo.png" alt="">
         </div>
     </div>
 
     <div class="footer-bottom">
         &copy; 2026 Texas Department of Banking. Institutional Node Ver: 8.4.2-GOLD
     </div>
+
 </footer>
 
 <script>
@@ -102,10 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('node-id').textContent =
         Math.random().toString(36).substring(2,10).toUpperCase();
-
-    document.querySelectorAll('.log-time').forEach(el=>{
-        el.textContent = new Date().toLocaleTimeString();
-    });
 
     document.getElementById('system-date').textContent =
         new Date().toLocaleDateString(undefined,{
