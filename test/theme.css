@@ -1,47 +1,201 @@
-/* USWDS & Texas Dept of Banking Core Styles */
 :root {
-  --gov-blue: #0f172a;
-  --gov-red: #b91c1c;
-  --texas-gold: #fcba19;
-  --bg-slate: #f1f5f9;
-  --font-main: 'Public Sans', sans-serif;
-  --font-mono: 'Roboto Mono', monospace;
+  --color-bg-base: #f0f4f8;
+  --color-bg-surface: #ffffff;
+  --color-text-primary: #1b1b1b;
+  --color-text-secondary: #5c5c5c;
+  --color-primary: #005ea2;
+  --color-primary-hover: #1a4480;
+  --color-accent: #0071bc;
+  --color-border: #dfe1e2;
+  --color-focus: #2491ff;
+
+  --font-primary: 'Source Sans 3', Arial, sans-serif;
+  --font-mono: 'Source Code Pro', monospace;
+
+  --radius: 6px;
 }
+
+/* DARK MODE */
+[data-theme="dark"] {
+  --color-bg-base: #0f1720;
+  --color-bg-surface: #18202a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b0b8c1;
+  --color-border: #2e3a46;
+}
+
+/* RESET */
+* { box-sizing: border-box; }
 
 body {
-  font-family: var(--font-main);
-  background-color: var(--bg-slate);
-  color: #0f172a;
+  font-family: var(--font-primary);
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
   margin: 0;
+}
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+}
+.skip-link:focus { top: 10px; }
+
+/* Banner */
+.usa-banner {
+  background: #f1f1f1;
+  font-size: 13px;
+  border-bottom: 1px solid #ccc;
+}
+.usa-banner__inner {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  gap: 10px;
+  align-items: center;
 }
 
-/* Typography Standards */
-h1 { font-size: 36px; font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; }
-h2 { font-size: 30px; font-weight: 700; }
-p { font-size: 16px; line-height: 24px; }
-
-/* Government Banner & Header */
-.gov-banner { background: #f1f5f9; padding: 8px 10%; border-bottom: 1px solid #334155; font-size: 13px; }
-.nav-header { background-color: var(--gov-blue); color: white; border-bottom: 5px solid var(--gov-red); padding: 1.5rem; }
-
-/* Components */
-.directive-card {
-  background: white;
-  border-left: 6px solid #2563eb;
-  padding: 1.75rem;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+/* Header */
+.site-header {
+  background: #ffffff;
+  border-bottom: 3px solid var(--color-primary);
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.header-brand img {
+  height: 48px;
+}
+.brand-text h1 {
+  font-size: 20px;
+  margin: 0;
+}
+.brand-text p {
+  font-size: 13px;
+  color: var(--color-text-secondary);
 }
 
-.legal-footer {
-  background-color: #0a1f2e;
-  color: #d1d9e6;
-  font-size: 0.8rem;
-  padding: 3rem 0;
-  border-top: 4px solid var(--texas-gold);
+/* Clock */
+.cst-clock-badge {
+  background: #112e51;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Panels */
+.panel {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.elevated {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Grid */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* Identity */
+.identity-card {
+  border-left: 4px solid var(--color-primary);
+  padding-left: 16px;
+}
+.identity-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+/* Status */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background: #00a91c;
+  border-radius: 50%;
+}
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); opacity: .7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); opacity: .7; }
+}
+
+/* Terminal */
+.terminal {
+  background: #0b0e11;
+  color: #00ff9c;
+}
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.terminal-body {
+  font-family: var(--font-mono);
+  line-height: 1.8;
+}
+.badge-secure {
+  background: #005ea2;
+  color: #fff;
+  padding: 2px 6px;
+}
+
+/* Footer */
+.site-footer {
+  background: #112e51;
+  color: #fff;
   margin-top: auto;
 }
-
-.no-print { @media print { display: none; } }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  padding: 30px 0;
+}
+.footer-logo img {
+  height: 60px;
+  opacity: 0.6;
+}
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding: 10px;
+}
