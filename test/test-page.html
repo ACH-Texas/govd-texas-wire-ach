@@ -45,5 +45,39 @@
                 <div class="panel" style="border-left: 4px solid var(--color-primary);">
                     <h3>JavaScript Engine Test</h3>
                     <p class="text-small">Live Server Node Time:</p>
-                    <p style
+                    <p style="font-size: 24px; font-weight: 700; font-family: var(--font-mono);" id="clock">Syncing...</p>
+                </div>
+            </div>
+        </div>
+    </main>
 
+    <!-- INJECTION HOOK: For Source 4 footer logic -->
+    <div id="global-footer"></div>
+
+    <!-- 2. LINK TO YOUR LOCAL JAVASCRIPT (Source 2 / 4) -->
+    <!-- This will inject the Texas Gov Banner, Header, and Footer -->
+    <script src="layout.js"></script>
+
+    <!-- BLOCK 2: SYSTEM ENGINE SCRIPT (Last Block) -->
+    <script id="system-engine">
+        function updateSystemClock() {
+            const clockElement = document.getElementById('clock');
+            if (clockElement) {
+                const now = new Date();
+                const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
+                                now.getMinutes().toString().padStart(2, '0') + ":" + 
+                                now.getSeconds().toString().padStart(2, '0');
+                clockElement.innerText = timeStr;
+            }
+        }
+
+        window.onload = function() {
+            // Start the clock tick
+            setInterval(updateSystemClock, 1000);
+            updateSystemClock();
+            
+            console.log("SANDBOX_STATUS: Local CSS and JS integrated successfully.");
+        };
+    </script>
+</body>
+</html>
