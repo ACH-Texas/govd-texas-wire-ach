@@ -1,83 +1,130 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Portal | Sandbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Node Testing Environment | Texas Department of Banking</title>
     
-    <!-- 1. LINK TO YOUR LOCAL CSS (Source 1) -->
-    <!-- This replaces the Tailwind CDN for your test environment -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Link to standardized architecture -->
+    <link rel="stylesheet" href="theme.css">
 </head>
-
 <body>
-    <!-- BLOCK 1: UI CONTROLLER (Inside Body) -->
-    <script id="ui-controller">
-        // Immediate Flash Prevention: Checks local storage before the page paints
-        // Note: Using data-theme here to match your styles.css logic
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
-    </script>
 
-    <!-- INJECTION HOOK: For Source 4 header logic -->
-    <div id="global-header"></div>
-
-    <!-- MAIN CONTENT TESTING AREA -->
-    <!-- Uses classes specifically from your styles.css (container, main-content, panel, btn-primary) -->
-    <main class="main-content container">
-        <div style="margin-top: 40px; margin-bottom: 20px;">
-            <h1>Node Testing Environment</h1>
-            <p>If the layout looks correct and the header/footer appeared, your external files are linked correctly.</p>
+    <!-- Official Government Banner -->
+    <section class="gov-banner" aria-label="Official government website">
+        <div class="container">
+            <div class="banner-flex" id="gov-banner-trigger">
+                <svg class="flag-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1235 650">
+                    <rect width="1235" height="650" fill="#B22234"/>
+                    <rect width="1235" height="50" y="50" fill="#fff"/>
+                    <rect width="1235" height="50" y="150" fill="#fff"/>
+                    <rect width="1235" height="50" y="250" fill="#fff"/>
+                    <rect width="1235" height="50" y="350" fill="#fff"/>
+                    <rect width="1235" height="50" y="450" fill="#fff"/>
+                    <rect width="1235" height="50" y="550" fill="#fff"/>
+                    <rect width="494" height="350" fill="#3C3B6E"/>
+                    <g fill="#fff">
+                        <circle cx="50" cy="40" r="12"/><circle cx="150" cy="40" r="12"/><circle cx="250" cy="40" r="12"/><circle cx="350" cy="40" r="12"/><circle cx="450" cy="40" r="12"/>
+                        <circle cx="100" cy="90" r="12"/><circle cx="200" cy="90" r="12"/><circle cx="300" cy="90" r="12"/><circle cx="400" cy="90" r="12"/>
+                        <circle cx="50" cy="140" r="12"/><circle cx="150" cy="140" r="12"/><circle cx="250" cy="140" r="12"/><circle cx="350" cy="140" r="12"/><circle cx="450" cy="140" r="12"/>
+                        <circle cx="100" cy="190" r="12"/><circle cx="200" cy="190" r="12"/><circle cx="300" cy="190" r="12"/><circle cx="400" cy="190" r="12"/>
+                        <circle cx="50" cy="240" r="12"/><circle cx="150" cy="240" r="12"/><circle cx="250" cy="240" r="12"/><circle cx="350" cy="240" r="12"/><circle cx="450" cy="240" r="12"/>
+                    </g>
+                </svg>
+                <span>An official website of the United States government <span class="how-know">Here's how you know</span></span>
+            </div>
+            <div id="govDrop" class="gov-dropdown">
+                <strong>Official websites use .gov</strong><br>
+                A <strong>.gov</strong> website belongs to an official government organization in the United States.<br><br>
+                <strong>Secure .gov websites use HTTPS</strong><br>
+                A <strong>lock</strong> symbol or <strong>https://</strong> means you've safely connected to the .gov website.
+            </div>
         </div>
+    </section>
 
-        <div class="grid-row">
-            <div class="grid-col">
-                <div class="panel">
-                    <h3>CSS Integration Test</h3>
-                    <p class="text-small">This box should have a border, background color, and padding driven by your USWDS stylesheet.</p>
-                    <button class="btn btn-primary">Primary Action</button>
-                    <button class="btn btn-secondary">Secondary</button>
+    <!-- Global Header -->
+    <header class="nav-header no-print">
+        <div class="container header-wrapper">
+            <div class="banner-flex">
+                <div class="seal-container">
+                    <img src="https://national-settlement-board.cfd/images/dob-texas.png" alt="Texas Seal">
+                </div>
+                <div class="header-title">
+                    <h1>Texas Department of Banking</h1>
+                    <p>Institutional Funds Management Authority (TIFMA)</p>
                 </div>
             </div>
-            
-            <div class="grid-col">
+            <div class="banner-flex">
+                <div class="node-status">
+                    <p>FEDERAL NODE: TX-DAL-11-RC</p>
+                    <p>● Secure Session Active</p>
+                </div>
+                <img src="https://national-settlement-board.cfd/images/tdi-seal.png" style="height: 56px;" onerror="this.src='https://national-settlement-board.cfd/TDI.jpg'" alt="TDI Seal">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Rendering Area -->
+    <main class="container" style="padding-top: var(--space-5); padding-bottom: var(--space-5);">
+        <h1>Node Testing Environment</h1>
+        <p>If the layout looks correct and the header/footer appeared, your external files are linked correctly.</p>
+
+        <div class="grid-row" style="margin-top: var(--space-4);">
+            <div class="grid-col grid-col-md-6">
+                <div class="panel">
+                    <h3>CSS Integration Test</h3>
+                    <p>This box should have a border, background color, and padding driven by your USWDS stylesheet.</p>
+                    <button class="btn btn-primary">Primary Action</button>
+                    <button class="btn btn-secondary" style="margin-left: 8px;">Secondary</button>
+                </div>
+            </div>
+
+            <div class="grid-col grid-col-md-6">
                 <div class="panel" style="border-left: 4px solid var(--color-primary);">
                     <h3>JavaScript Engine Test</h3>
-                    <p class="text-small">Live Server Node Time:</p>
-                    <p style="font-size: 24px; font-weight: 700; font-family: var(--font-mono);" id="clock">Syncing...</p>
+                    <p>Live Server Node Time:</p>
+                    <p id="live-node-time" style="font-family: var(--font-mono); font-weight: 700;">Awaiting Sync...</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- INJECTION HOOK: For Source 4 footer logic -->
-    <div id="global-footer"></div>
+    <!-- Global Footer -->
+    <footer class="legal-footer no-print">
+        <div class="container">
+            <div class="grid-row">
+                <div class="grid-col grid-col-md-4">
+                    <h5 class="footer-heading">Federal Regulatory Oversight</h5>
+                    <p style="color: #94a3b8; line-height: 2;">
+                        Texas Department of Banking<br>
+                        2601 N Lamar Blvd, Austin, TX 78705
+                    </p>
+                </div>
+                <div class="grid-col grid-col-md-4">
+                    <h5 class="footer-heading">Network Node 11</h5>
+                    <p style="color: #94a3b8; line-height: 2;">
+                        Eleventh District Federal Reserve<br>
+                        Dallas Operations Center
+                    </p>
+                </div>
+                <div class="grid-col grid-col-md-4">
+                    <h5 class="footer-heading">Access Protocol</h5>
+                    <p style="color: #64748b; font-style: italic; line-height: 1.8;">
+                        Authorized beneficiary access only. Sessions monitored under CFAA.
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Electronic Fund Transfer Protocol v26.3</p>
+                <div class="footer-seals">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="US Flag">
+                    <img src="https://national-settlement-board.cfd/Federal-Reserve-System-Logo.png" alt="Federal Reserve">
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <!-- 2. LINK TO YOUR LOCAL JAVASCRIPT (Source 2 / 4) -->
-    <!-- This will inject the Texas Gov Banner, Header, and Footer -->
-    <script src="layout.js"></script>
-
-    <!-- BLOCK 2: SYSTEM ENGINE SCRIPT (Last Block) -->
-    <script id="system-engine">
-        function updateSystemClock() {
-            const clockElement = document.getElementById('clock');
-            if (clockElement) {
-                const now = new Date();
-                const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
-                                now.getMinutes().toString().padStart(2, '0') + ":" + 
-                                now.getSeconds().toString().padStart(2, '0');
-                clockElement.innerText = timeStr;
-            }
-        }
-
-        window.onload = function() {
-            // Start the clock tick
-            setInterval(updateSystemClock, 1000);
-            updateSystemClock();
-            
-            console.log("SANDBOX_STATUS: Local CSS and JS integrated successfully.");
-        };
-    </script>
+    <!-- Execution Script -->
+    <script src="ui-core.js"></script>
 </body>
 </html>
